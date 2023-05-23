@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { MdShoppingBasket } from 'react-icons/md'
 import { motion } from 'framer-motion'
-import NotFound from '../img/NotFound.svg'
-import { useStateValue } from '../context/StateProvider'
-import { actionType } from '../context/reducer'
+import NotFound from '@/assets/img/NotFound.svg'
+import { useStateValue } from '@/context/StateProvider'
+import { actionType } from '@/context/reducer'
 
 const RowContainer = ({ flag, data, scrollValue }) => {
   const rowContainer = useRef()
@@ -22,6 +22,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
 
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue
+    console.log(scrollValue)
   }, [scrollValue])
 
   useEffect(() => {

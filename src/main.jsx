@@ -7,11 +7,14 @@ import App from './App'
 import { StateProvider } from './context/StateProvider'
 import { initialState } from './context/initalState'
 import reducer from './context/reducer'
+import { AnimatePresence } from 'framer-motion'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Router>
-    <StateProvider initialState={initialState} reducer={reducer}>
-      <App />
-    </StateProvider>
+    <AnimatePresence>
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <App />
+      </StateProvider>
+    </AnimatePresence>
   </Router>
 )

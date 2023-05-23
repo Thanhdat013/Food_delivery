@@ -8,6 +8,8 @@ import MenuContainer from './MenuContainer'
 import RowContainer from './RowContainer'
 
 const MainContainer = () => {
+  console.log('re-rendering')
+
   const [{ foodItems, cartShow }] = useStateValue()
   const [scrollValue, setScrollValue] = useState(0)
 
@@ -41,7 +43,7 @@ const MainContainer = () => {
           </div>
         </div>
         <RowContainer
-          scrollValue={scrollValue}
+          // scrollValue={scrollValue}
           flag={true}
           data={foodItems?.filter((n) => n.category === 'fruits')}
         />

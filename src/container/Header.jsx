@@ -8,8 +8,8 @@ import { app } from '@/firebase.config'
 import { Link } from 'react-router-dom'
 import { useStateValue } from '@/context/StateProvider'
 import { actionType } from '@/context/reducer'
-import Avatar from '@/img/avatar.png'
-import Logo from '@/img/logo.png'
+import Avatar from '@/assets/img/avatar.png'
+import Logo from '@/assets/img/logo.png'
 
 const Header = () => {
   const firebaseAuth = getAuth(app)
