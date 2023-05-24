@@ -19,7 +19,7 @@ import { storage } from '../firebase.config'
 import { doGetFoodItemsAction } from '../redux/reducers/foodReducer'
 import { categories } from '../utils/data'
 import { getAllFoodItems, saveItem } from '../utils/firebaseFunctions'
-import Loader from './Loader'
+import Loader from './home/Loader'
 
 const CreateContainer = () => {
   const [title, setTitle] = useState('')

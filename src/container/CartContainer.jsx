@@ -5,7 +5,7 @@ import { RiRefreshFill } from 'react-icons/ri'
 import EmptyCart from '@/assets/img/emptyCart.svg'
 import { motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
-import { buttonClick } from '../animations'
+import { buttonClick } from '@/animations'
 import {
   doClearCartAction,
   doShowCartAction,

@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import { MdShoppingBasket } from 'react-icons/md'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { doAddCartItemsAction } from '../redux/reducers/cartReducer'
+import { doAddCartItemsAction } from '../../redux/reducers/cartReducer'
 import { useNavigate } from 'react-router-dom'
 
 const RowContainer = ({ flag, data, scrollValue }) => {
@@ -14,7 +14,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
   const navigate = useNavigate()
   const addToCart = (data) => {
     if (!isAuthenticated) {
-      navigate('/login')
+      navigate('/login', { replace: true })
     } else {
       dispatch(doAddCartItemsAction(data))
     }

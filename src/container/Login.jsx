@@ -19,6 +19,7 @@ import { app } from '@/firebase.config'
 import { useNavigate } from 'react-router-dom'
 import { doLoginAction } from '@/redux/reducers/userReducer'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState('')
@@ -35,18 +36,39 @@ const Login = () => {
   // const [{ user }, dispatch] = useStateValue()
   const loginWithGoogle = async () => {
     await signInWithPopup(firebaseAuth, provider).then((userCred) => {
-      navigate('/')
+      navigate('/', { replace: true })
+      toast.success('You are login successful')
       const result = userCred.user
       localStorage.setItem('access_token', result.accessToken)
       const user = parseJwt(result.accessToken)
       dispatch(doLoginAction(user))
-      console.log('sign up with google', user)
     })
+  }
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
   }
 
   const signUpWithEmailPassword = async () => {
-    if (userEmail === '' || userPassword === '' || userConfirmPassword === '') {
-      console.log('user')
+    const isValidEmail = validateEmail(userEmail)
+    if (!isValidEmail) {
+      toast.error('Please enter a email')
+      return
+    }
+    if (!userPassword) {
+      toast.error('Please enter a password')
+      return
+    }
+    if (!userConfirmPassword) {
+      toast.error('Please confirm your password')
+      return
+    }
+    if (userPassword !== userConfirmPassword) {
+      toast.error('The password is not the same, please try again')
+      return
     } else {
       if (userPassword === userConfirmPassword) {
         await createUserWithEmailAndPassword(
@@ -57,35 +79,43 @@ const Login = () => {
           setUserEmail('')
           setUserPassword('')
           setUserConfirmPassword('')
-          navigate('/')
+          navigate('/', { replace: true })
+          toast.success('You are login successful')
           const result = userCred.user
           localStorage.setItem('access_token', result.accessToken)
           const user = parseJwt(result.accessToken)
           dispatch(doLoginAction(user))
-
-          console.log('sign up with email and password', user)
         })
       }
     }
   }
 
   const signInWithEmailPassword = async () => {
-    if (userEmail !== '' || userPassword !== '') {
+    const isValidEmail = validateEmail(userEmail)
+    if (!isValidEmail) {
+      toast.error('Please enter a email')
+      return
+    }
+    if (!userPassword) {
+      toast.error('Please enter a password')
+      return
+    }
+    if (isValidEmail !== '' || userPassword !== '') {
       await signInWithEmailAndPassword(
         firebaseAuth,
         userEmail,
         userPassword
       ).then((userCred) => {
+        toast.success('You are login successful')
         setUserEmail('')
         setUserPassword('')
         const result = userCred.user
         localStorage.setItem('access_token', result.accessToken)
         const user = parseJwt(result.accessToken)
         dispatch(doLoginAction(user))
-        console.log('user sign in', user)
       })
     } else {
-      alert('Please enter ,,,')
+      toast.error('An email or password is incorrect, please try again')
     }
   }
   // get user with access token from server
@@ -103,13 +133,17 @@ const Login = () => {
       <img
         src={LoginBgc}
         alt='Login bgc'
-        className='w-full h-full object-cover absolute top-0 left-0'
+        className=' w-full h-full object-cover absolute top-0 left-0'
       />
 
       {/* content box */}
       <div className='flex flex-col items-center bg-lightOverLay w-[80%] md:w-508 h-full z-10 backdrop-blur-md p-4 px-4 py-12 gap-6'>
-        <div className='flex items-center justify-start gap-4 w-full'>
+        <div
+          className='flex items-center justify-center gap-4 w-full cursor-pointer'
+          onClick={() => navigate('/', { relative: true })}
+        >
           <img src={Logo} className='w-8' alt='logo' />
+          <p className='text-xl font-semibold text-headingColor'>City</p>
         </div>
         {/* welcome text */}
         <p className='text-3xl font-semibold text-headingColor'>Welcome Back</p>

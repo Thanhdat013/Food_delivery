@@ -1,14 +1,21 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { MdAdd, MdLogout, MdShoppingBasket } from 'react-icons/md'
+import {
+  MdAdd,
+  MdLogout,
+  MdShoppingBasket,
+  MdOutlineDashboardCustomize,
+} from 'react-icons/md'
 
 import Avatar from '@/assets/img/avatar.png'
 import Logo from '@/assets/img/logo.png'
 import { doLogOutAction } from '@/redux/reducers/userReducer'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { buttonClick } from '@/animations'
 import { doShowCartAction } from '@/redux/reducers/cartReducer'
+import { isActiveStyle, isNotActiveStyle } from '@/utils/style'
+import { doClearCartAction } from '@/redux/reducers/cartReducer'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -20,6 +27,7 @@ const Header = () => {
 
   const logout = () => {
     dispatch(doLogOutAction())
+    dispatch(doClearCartAction())
     setIsMenu(false)
   }
 
@@ -31,30 +39,42 @@ const Header = () => {
     <header className='fixed z-50 w-screen p-3 px-4 md:p-6 md:px-16 bg-primary'>
       {/* desktop & tablet */}
       <div className='hidden md:flex w-full h-full items-center justify-between'>
-        <Link to={'/'} className='flex items-center gap-2'>
+        <NavLink to={'/'} className='flex items-center gap-2'>
           <img src={Logo} className='w-8 object-cover' alt='logo' />
           <p className='text-headingColor text-xl font-bold'> City</p>
-        </Link>
+        </NavLink>
 
-        <div className='flex items-center gap-8'>
+        <nav className='flex items-center gap-8'>
           <motion.ul
             initial={{ opacity: 0, x: 200 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 200 }}
-            className='flex items-center gap-8 '
+            className='flex items-center gap-16 '
           >
-            <li className='text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer'>
+            <NavLink
+              to={'/'}
+              className={({ isActive }) =>
+                isActive ? isActiveStyle : isNotActiveStyle
+              }
+            >
               Home
-            </li>
-            <li className='text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer'>
-              Menu
-            </li>
-            <li className='text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer'>
+            </NavLink>
+            <NavLink
+              to={'/about'}
+              className={({ isActive }) =>
+                isActive ? isActiveStyle : isNotActiveStyle
+              }
+            >
               About Us
-            </li>
-            <li className='text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer'>
+            </NavLink>
+            <NavLink
+              to={'/service'}
+              className={({ isActive }) =>
+                isActive ? isActiveStyle : isNotActiveStyle
+              }
+            >
               Service
-            </li>
+            </NavLink>
           </motion.ul>
 
           <div
@@ -76,7 +96,7 @@ const Header = () => {
               <motion.button
                 className='text-lg text-red-400 hover:text-red-500 hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer '
                 {...buttonClick}
-                onClick={() => navigate('/login')}
+                onClick={() => navigate('/login', { replace: true })}
               >
                 Sign in
               </motion.button>
@@ -97,26 +117,37 @@ const Header = () => {
                 className='w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0'
               >
                 {user && user.email === 'ktd1302@gmail.com' && (
-                  <Link to={'/createItem'}>
-                    <p
-                      className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
-                      onClick={() => setIsMenu(false)}
-                    >
-                      New Item <MdAdd />
-                    </p>
-                  </Link>
+                  <>
+                    <Link to={'/createItem'}>
+                      <p
+                        className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
+                        onClick={() => setIsMenu(false)}
+                      >
+                        <MdAdd /> New Item
+                      </p>
+                    </Link>
+                    <Link to={'/dashboard'}>
+                      <p
+                        className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
+                        onClick={() => setIsMenu(false)}
+                      >
+                        <MdOutlineDashboardCustomize /> Dashboard
+                      </p>
+                    </Link>
+                  </>
                 )}
 
                 <p
-                  className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-b-lg  transition-all duration-100 ease-in-out text-textColor text-base'
+                  className='m-2 p-2 rounded-md shadow-md flex items-center justify-center bg-gray-200 gap-3 cursor-pointer hover:bg-gray-300 transition-all duration-100 ease-in-out text-textColor text-base'
                   onClick={logout}
                 >
-                  Logout <MdLogout />
+                  <MdLogout />
+                  Logout
                 </p>
               </motion.div>
             )}
           </div>
-        </div>
+        </nav>
       </div>
 
       {/* mobile */}
@@ -146,7 +177,7 @@ const Header = () => {
             src={user ? user.photoURL : Avatar}
             className='w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer rounded-full'
             alt='userprofile'
-            onClick={() => navigate('/login')}
+            onClick={() => navigate('/login', { replace: true })}
           />
           {isMenu && (
             <motion.div
@@ -156,37 +187,50 @@ const Header = () => {
               className='w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0'
             >
               <ul className='flex flex-col '>
-                <li
-                  className='text-base text-textColor hover:text-headingColor duration-100 hover:rounded-t-lg  transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2'
+                <NavLink
+                  to={'/'}
+                  className={({ isActive }) =>
+                    isActive ? isActiveStyle : isNotActiveStyle
+                  }
                   onClick={() => setIsMenu(false)}
                 >
                   Home
-                </li>
-                <li
-                  className='text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2'
-                  onClick={() => setIsMenu(false)}
-                >
-                  Menu
-                </li>
-                <li
-                  className='text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2'
+                </NavLink>
+                <NavLink
+                  to={'/about'}
+                  className={({ isActive }) =>
+                    isActive ? isActiveStyle : isNotActiveStyle
+                  }
                   onClick={() => setIsMenu(false)}
                 >
                   About Us
-                </li>
-                <li
-                  className='text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2'
+                </NavLink>
+                <NavLink
+                  to={'/service'}
+                  className={({ isActive }) =>
+                    isActive ? isActiveStyle : isNotActiveStyle
+                  }
                   onClick={() => setIsMenu(false)}
                 >
                   Service
-                </li>
+                </NavLink>
               </ul>
               {user && user.email === 'ktd1302@gmail.com' && (
-                <Link to={'/createItem'}>
-                  <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base'>
-                    New Item <MdAdd />
-                  </p>
-                </Link>
+                <>
+                  <Link to={'/createItem'}>
+                    <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base'>
+                      New Item <MdAdd />
+                    </p>
+                  </Link>
+                  <Link to={'/dashboard'}>
+                    <p
+                      className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
+                      onClick={() => setIsMenu(false)}
+                    >
+                      <MdOutlineDashboardCustomize /> Dashboard
+                    </p>
+                  </Link>
+                </>
               )}
               <p
                 className='m-2 p-2 rounded-md shadow-md flex items-center justify-center bg-gray-200 gap-3 cursor-pointer hover:bg-gray-300 transition-all duration-100 ease-in-out text-textColor text-base'

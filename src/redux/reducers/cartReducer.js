@@ -55,7 +55,6 @@ const cartSlice = createSlice({
 
     doShowCartAction: (state) => {
       state.cartShow = !state.cartShow
-      console.log(state.cartShow)
     },
     doClearCartAction: (state) => {
       state.cartShow = false
