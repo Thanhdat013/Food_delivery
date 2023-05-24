@@ -2,23 +2,26 @@ import { useEffect, useState } from 'react'
 import { MdOutlineKeyboardBackspace } from 'react-icons/md'
 import { RiRefreshFill } from 'react-icons/ri'
 
-import { motion } from 'framer-motion'
-import { useStateValue } from '@/context/StateProvider'
-import { actionType } from '@/context/reducer'
 import EmptyCart from '@/assets/img/emptyCart.svg'
+import { motion } from 'framer-motion'
+import { useDispatch, useSelector } from 'react-redux'
+import { buttonClick } from '../animations'
+import {
+  doClearCartAction,
+  doShowCartAction,
+} from '@/redux/reducers/cartReducer'
 import CartItem from './CartItem'
 
 const CartContainer = () => {
-  const [{ cartShow, cartItems, user }, dispatch] = useStateValue()
+  const dispatch = useDispatch()
+  const cartItems = useSelector((state) => state.cartItems.cartItems)
+  const isAuthenticated = useSelector((state) => state.users.isAuthenticated)
+
   const [flag, setFlag] = useState(1)
   const [tot, setTot] = useState(0)
   const [priceDelivery, setPriceDelivery] = useState(0)
-
   const showCart = () => {
-    dispatch({
-      type: actionType.SET_CART_SHOW,
-      cartShow: !cartShow,
-    })
+    dispatch(doShowCartAction())
   }
 
   useEffect(() => {
@@ -27,16 +30,12 @@ const CartContainer = () => {
     }, 0)
     if (totalPrice < 150000) setPriceDelivery(15000)
     setTot(totalPrice)
-    console.log(tot)
-  }, [tot, flag])
-
+  }, [tot, flag, cartItems])
+  const clickPayMent = () => {
+    dispatch(doClearCartAction())
+  }
   const clearCart = () => {
-    dispatch({
-      type: actionType.SET_CART_ITEMS,
-      cartItems: [],
-    })
-
-    localStorage.setItem('cartItems', JSON.stringify([]))
+    dispatch(doClearCartAction())
   }
 
   return (
@@ -112,17 +111,18 @@ const CartContainer = () => {
               </p>
             </div>
 
-            {user ? (
+            {isAuthenticated ? (
               <motion.button
-                whileTap={{ scale: 0.8 }}
+                {...buttonClick}
                 type='button'
                 className='w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg'
+                onClick={clickPayMent}
               >
                 Check Out
               </motion.button>
             ) : (
               <motion.button
-                whileTap={{ scale: 0.8 }}
+                {...buttonClick}
                 type='button'
                 className='w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg'
               >

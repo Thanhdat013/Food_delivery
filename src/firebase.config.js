@@ -11,7 +11,6 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_MESSAGE_ID,
   appId: import.meta.env.VITE_APP_ID,
 }
-console.log(import.meta.env.VITE_API_KEY)
 
 const app = getApps.length > 0 ? getApp() : initializeApp(firebaseConfig)
 

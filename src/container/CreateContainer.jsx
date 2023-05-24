@@ -1,25 +1,25 @@
-import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 
-import {
-  MdFastfood,
-  MdCloudUpload,
-  MdDelete,
-  MdFoodBank,
-  MdAttachMoney,
-} from 'react-icons/md'
-import { categories } from '../utils/data'
-import Loader from './Loader'
 import {
   deleteObject,
   getDownloadURL,
   ref,
   uploadBytesResumable,
 } from 'firebase/storage'
+import {
+  MdAttachMoney,
+  MdCloudUpload,
+  MdDelete,
+  MdFastfood,
+  MdFoodBank,
+} from 'react-icons/md'
+import { useDispatch } from 'react-redux'
 import { storage } from '../firebase.config'
+import { doGetFoodItemsAction } from '../redux/reducers/foodReducer'
+import { categories } from '../utils/data'
 import { getAllFoodItems, saveItem } from '../utils/firebaseFunctions'
-import { actionType } from '../context/reducer'
-import { useStateValue } from '../context/StateProvider'
+import Loader from './Loader'
 
 const CreateContainer = () => {
   const [title, setTitle] = useState('')
@@ -31,7 +31,7 @@ const CreateContainer = () => {
   const [alertStatus, setAlertStatus] = useState('danger')
   const [msg, setMsg] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [{ foodItems }, dispatch] = useStateValue()
+  const dispatch = useDispatch()
 
   const uploadImage = (e) => {
     setIsLoading(true)
@@ -142,10 +142,7 @@ const CreateContainer = () => {
 
   const fetchData = async () => {
     await getAllFoodItems().then((data) => {
-      dispatch({
-        type: actionType.SET_FOOD_ITEMS,
-        foodItems: data,
-      })
+      dispatch(doGetFoodItemsAction(data))
     })
   }
 

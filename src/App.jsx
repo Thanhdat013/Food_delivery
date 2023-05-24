@@ -1,34 +1,39 @@
 import { useEffect } from 'react'
-import {
-  Outlet,
-  Route,
-  RouterProvider,
-  Routes,
-  createBrowserRouter,
-} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
 import { CreateContainer, Header, Login, MainContainer } from './container'
-import { useStateValue } from './context/StateProvider'
+import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
 import { getAllFoodItems } from './utils/firebaseFunctions'
-import { actionType } from './context/reducer'
+import { doLoginAction } from '@/redux/reducers/userReducer'
 
 const App = () => {
-  const [{}, dispatch] = useStateValue()
+  function parseJwt(token) {
+    if (!token) {
+      return
+    }
+    const base64Url = token.split('.')[1]
+    const base64 = base64Url.replace('-', '+').replace('_', '/')
+    return JSON.parse(window.atob(base64))
+  }
+  const dispatch = useDispatch()
 
   // get All items
 
   const fetchData = async () => {
     await getAllFoodItems().then((data) => {
-      dispatch({
-        type: actionType.SET_FOOD_ITEMS,
-        foodItems: data,
-      })
+      dispatch(doGetFoodItemsAction(data))
     })
   }
 
+  const fecthUser = async () => {
+    const accessToken = localStorage.getItem('access_token')
+    const user = parseJwt(accessToken)
+    dispatch(doLoginAction(user))
+  }
   useEffect(() => {
+    fecthUser()
     fetchData()
   }, [])
-
   return (
     <div className='w-screen h-auto flex flex-col bg-primary'>
       <div>

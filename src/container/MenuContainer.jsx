@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import { IoFastFood } from 'react-icons/io5'
 import { categories } from '@/utils/data'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { IoFastFood } from 'react-icons/io5'
+import { useSelector } from 'react-redux'
 import RowContainer from './RowContainer'
-import { useStateValue } from '@/context/StateProvider'
 
 const MenuContainer = () => {
   const [filter, setFilter] = useState('chicken')
-
-  const [{ foodItems }] = useStateValue()
+  const foodItems = useSelector((state) => state.foodItems.foodItems)
 
   return (
     <section className='w-full my-6' id='menu'>

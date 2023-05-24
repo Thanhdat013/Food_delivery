@@ -1,23 +1,23 @@
-import { useEffect, useRef, useState } from 'react'
-import { MdShoppingBasket } from 'react-icons/md'
-import { motion } from 'framer-motion'
 import NotFound from '@/assets/img/NotFound.svg'
-import { useStateValue } from '@/context/StateProvider'
-import { actionType } from '@/context/reducer'
+import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import { MdShoppingBasket } from 'react-icons/md'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { doAddCartItemsAction } from '../redux/reducers/cartReducer'
+import { useNavigate } from 'react-router-dom'
 
 const RowContainer = ({ flag, data, scrollValue }) => {
   const rowContainer = useRef()
-
-  const [items, setItems] = useState([])
-
-  const [{ cartItems }, dispatch] = useStateValue()
-
-  const addtocart = () => {
-    dispatch({
-      type: actionType.SET_CART_ITEMS,
-      cartItems: items,
-    })
-    localStorage.setItem('cartItems', JSON.stringify(items))
+  const isAuthenticated = useSelector((state) => state.users.isAuthenticated)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const addToCart = (data) => {
+    if (!isAuthenticated) {
+      navigate('/login')
+    } else {
+      dispatch(doAddCartItemsAction(data))
+    }
   }
 
   useEffect(() => {
@@ -25,10 +25,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
     console.log(scrollValue)
   }, [scrollValue])
 
-  useEffect(() => {
-    addtocart()
-  }, [items])
-
+  //
   return (
     <div
       ref={rowContainer}
@@ -59,7 +56,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
               <motion.div
                 whileTap={{ scale: 0.75 }}
                 className='w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8'
-                onClick={() => setItems([...cartItems, item])}
+                onClick={() => addToCart(item)}
               >
                 <MdShoppingBasket className='text-white' />
               </motion.div>
@@ -75,10 +72,6 @@ const RowContainer = ({ flag, data, scrollValue }) => {
               <div className='flex mt-1 items-center gap-8'>
                 <p className='text-lg text-headingColor font-semibold'>
                   <span className='text-sm text-red-500'>VNĐ &nbsp;</span>
-                  {/* {new Intl.NumberFormat('vi-VN', {
-                    style: 'currency',
-                    currency: 'VND',
-                  }).format(item?.price)} */}
 
                   {String(item?.price).replace(/(.)(?=(\d{3})+$)/g, '$1,')}
                 </p>

@@ -1,16 +1,15 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
-import { useStateValue } from '@/context/StateProvider'
+import { useSelector } from 'react-redux'
 import CartContainer from './CartContainer'
 import HomeContainer from './HomeContainer'
 import MenuContainer from './MenuContainer'
 import RowContainer from './RowContainer'
 
 const MainContainer = () => {
-  console.log('re-rendering')
-
-  const [{ foodItems, cartShow }] = useStateValue()
+  const foodItems = useSelector((state) => state.foodItems.foodItems)
+  const cartShow = useSelector((state) => state.cartItems.cartShow)
   const [scrollValue, setScrollValue] = useState(0)
 
   useEffect(() => {}, [scrollValue, cartShow])
@@ -43,7 +42,7 @@ const MainContainer = () => {
           </div>
         </div>
         <RowContainer
-          // scrollValue={scrollValue}
+          scrollValue={scrollValue}
           flag={true}
           data={foodItems?.filter((n) => n.category === 'fruits')}
         />
