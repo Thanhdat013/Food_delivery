@@ -6,7 +6,7 @@ import {
   DBOrder,
   DBUsers,
   DBLeftSection,
-} from '@/container/admin'
+} from './container/admin'
 import { doLoginAction } from '@/redux/reducers/userReducer'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
