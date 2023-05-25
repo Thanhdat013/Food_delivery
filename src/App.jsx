@@ -5,8 +5,8 @@ import {
   DBNewItem,
   DBOrder,
   DBUsers,
-} from '@/container/admin'
-import DBLeftSection from '@/container/admin/DBLeftSection'
+  DBLeftSection,
+} from '@/container/admin/index'
 import { doLoginAction } from '@/redux/reducers/userReducer'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -65,7 +65,7 @@ const App = () => {
     return (
       <div className='w-screen h-screen flex  bg-primary'>
         <div className='h-full '>
-          <DBLeftSection />
+          <DBLeftSection />s
         </div>
 
         <div className='flex flex-col py-12 px-12 flex-1  h-full'>
