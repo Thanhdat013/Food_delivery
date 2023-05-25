@@ -1,6 +1,7 @@
 import Logo from '@/assets/img/logo.png'
 import { isActiveStyle, isNotActiveStyle } from '@/utils/style'
 import { NavLink } from 'react-router-dom'
+
 const DBLeftSection = () => {
   return (
     <div className='h-full py-6 flex flex-col item bg-lightOverLay shadow-md min-w-225 backdrop-blur-md w-275 gap-3 '>

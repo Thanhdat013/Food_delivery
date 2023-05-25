@@ -6,6 +6,7 @@ import {
   DBOrder,
   DBUsers,
 } from '@/container/admin'
+import DBLeftSection from '@/container/admin/DBLeftSection'
 import { doLoginAction } from '@/redux/reducers/userReducer'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -13,9 +14,9 @@ import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Footer, Header, Login, MainContainer } from './container'
-import About from './container/about/About'
 import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
 import { getAllFoodItems } from './utils/firebaseFunctions'
+import About from './container/about/About'
 
 const App = () => {
   function parseJwt(token) {
@@ -63,7 +64,9 @@ const App = () => {
   const LayoutAdmin = () => {
     return (
       <div className='w-screen h-screen flex  bg-primary'>
-        <div className='h-full '>{/* <DBLeftSection /> */}</div>
+        <div className='h-full '>
+          <DBLeftSection />
+        </div>
 
         <div className='flex flex-col py-12 px-12 flex-1  h-full'>
           <DBHeader />
