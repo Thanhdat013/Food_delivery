@@ -17,6 +17,13 @@ body {
   overflow-x: hidden;
 }
 
+.MuiPaper-root {
+  width: 100%;
+}
+.MuiPopover-paper {
+  width: 10%;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

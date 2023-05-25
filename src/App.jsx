@@ -1,13 +1,21 @@
+import {
+  DBHeader,
+  DBHome,
+  DBItems,
+  DBLeftSection,
+  DBNewItem,
+  DBOrder,
+  DBUsers,
+} from '@/container/admin'
 import { doLoginAction } from '@/redux/reducers/userReducer'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { CreateContainer, Header, Login, MainContainer } from './container'
+import { Header, Login, MainContainer } from './container'
 import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
 import { getAllFoodItems } from './utils/firebaseFunctions'
-import { Dashboard } from './container/admin'
 
 const App = () => {
   function parseJwt(token) {
@@ -50,10 +58,20 @@ const App = () => {
       </div>
     )
   }
+
   const LayoutAdmin = () => {
     return (
-      <div className='w-screen h-auto flex flex-col bg-primary'>
-        <Outlet />
+      <div className='w-screen h-screen flex  bg-primary'>
+        <div className='h-full '>
+          <DBLeftSection />
+        </div>
+
+        <div className='flex flex-col py-12 px-12 flex-1  h-full'>
+          <DBHeader />
+          <div>
+            <Outlet />
+          </div>
+        </div>
       </div>
     )
   }
@@ -61,13 +79,7 @@ const App = () => {
     {
       path: '/',
       element: <Layout />,
-      children: [
-        { index: true, element: <MainContainer /> },
-        {
-          path: 'createItem',
-          element: <CreateContainer />,
-        },
-      ],
+      children: [{ index: true, element: <MainContainer /> }],
     },
 
     {
@@ -78,10 +90,22 @@ const App = () => {
       path: '/dashboard',
       element: <LayoutAdmin />,
       children: [
-        { index: true, element: <Dashboard /> },
+        { index: true, path: 'home', element: <DBHome /> },
+        {
+          path: 'order',
+          element: <DBOrder />,
+        },
+        {
+          path: 'items',
+          element: <DBItems />,
+        },
+        {
+          path: 'users',
+          element: <DBUsers />,
+        },
         {
           path: 'createItem',
-          element: <CreateContainer />,
+          element: <DBNewItem />,
         },
       ],
     },

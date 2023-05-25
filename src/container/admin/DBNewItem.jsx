@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 import {
@@ -15,21 +14,20 @@ import {
   MdFoodBank,
 } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
-import { storage } from '../firebase.config'
-import { doGetFoodItemsAction } from '../redux/reducers/foodReducer'
-import { categories } from '../utils/data'
-import { getAllFoodItems, saveItem } from '../utils/firebaseFunctions'
-import Loader from './home/Loader'
+import { toast } from 'react-toastify'
+import { storage } from '../../firebase.config'
+import { doGetFoodItemsAction } from '../../redux/reducers/foodReducer'
+import { categories } from '../../utils/data'
+import { getAllFoodItems, saveItem } from '../../utils/firebaseFunctions'
+import Loader from '../home/Loader'
 
-const CreateContainer = () => {
+const DBNewItem = () => {
   const [title, setTitle] = useState('')
   const [calories, setCalories] = useState('')
   const [price, setPrice] = useState('')
   const [category, setCategory] = useState(null)
   const [imageAsset, setImageAsset] = useState(null)
-  const [fields, setFields] = useState(false)
-  const [alertStatus, setAlertStatus] = useState('danger')
-  const [msg, setMsg] = useState(null)
+
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
 
@@ -47,11 +45,9 @@ const CreateContainer = () => {
       },
       (error) => {
         console.log(error)
-        setFields(true)
-        setMsg('Error while uploading : Try AGain 🙇')
-        setAlertStatus('danger')
+
+        toast.error('Error while uploading : Try AGain 🙇')
         setTimeout(() => {
-          setFields(false)
           setIsLoading(false)
         }, 3000)
       },
@@ -59,12 +55,7 @@ const CreateContainer = () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageAsset(downloadURL)
           setIsLoading(false)
-          setFields(true)
-          setMsg('Image uploaded successfully 😊')
-          setAlertStatus('success')
-          setTimeout(() => {
-            setFields(false)
-          }, 3000)
+          toast.success('Image uploaded successfully 😊')
         })
       }
     )
@@ -76,12 +67,7 @@ const CreateContainer = () => {
     deleteObject(deleteRef).then(() => {
       setImageAsset(null)
       setIsLoading(false)
-      setFields(true)
-      setMsg('Image deleted successfully 😊')
-      setAlertStatus('success')
-      setTimeout(() => {
-        setFields(false)
-      }, 3000)
+      toast.success('Image deleted successfully 😊')
     })
   }
 
@@ -90,11 +76,8 @@ const CreateContainer = () => {
     setIsLoading(true)
     try {
       if (!title || !calories || !imageAsset || !price || !category) {
-        setFields(true)
-        setMsg("Required fields can't be empty")
-        setAlertStatus('danger')
+        toast.error('Required fields can`t be empty')
         setTimeout(() => {
-          setFields(false)
           setIsLoading(false)
         }, 3000)
       } else {
@@ -110,21 +93,13 @@ const CreateContainer = () => {
 
         saveItem(data)
         setIsLoading(false)
-        setFields(true)
-        setMsg('Data Uploaded successfully 😊')
-        setAlertStatus('success')
+        toast.success('Data Uploaded successfully 😊')
         clearData()
-        setTimeout(() => {
-          setFields(false)
-        }, 3000)
       }
     } catch (error) {
       console.log(error)
-      setFields(true)
-      setMsg('Error while uploading : Try AGain 🙇')
-      setAlertStatus('danger')
+      toast.error('Error while uploading : Try AGain 🙇')
       setTimeout(() => {
-        setFields(false)
         setIsLoading(false)
       }, 3000)
     }
@@ -137,7 +112,7 @@ const CreateContainer = () => {
     setImageAsset(null)
     setCalories('')
     setPrice('')
-    setCategory('other')
+    setCategory('')
   }
 
   const fetchData = async () => {
@@ -147,21 +122,7 @@ const CreateContainer = () => {
   }
 
   return (
-    <div className='w-full min-h-screen flex items-center justify-center flex-col'>
-      {fields && (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className={`w-[90%] md:w-[50%] p-2 rounded-lg my-4 text-center text-lg font-semibold ${
-            alertStatus === 'danger'
-              ? 'bg-red-400 text-red-800'
-              : 'bg-emerald-400 text-emerald-800'
-          }`}
-        >
-          {msg}
-        </motion.p>
-      )}
+    <div className='w-full h-full flex items-center justify-center flex-col mt-16'>
       <div className='w-[90%] md:w-[50%] border border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center gap-4'>
         <div className='w-full py-2 border-b border-gray-300 flex items-center gap-2'>
           <MdFastfood className='text-xl text-gray-700' />
@@ -175,30 +136,24 @@ const CreateContainer = () => {
           />
         </div>
 
-        <div className='w-full'>
-          <select
-            onChange={(e) => {
-              setCategory(e.target.value)
-            }}
-            className='outline-none w-full text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer'
-          >
-            <option value='other' className='bg-white'>
-              Select Category
-            </option>
-            {categories &&
-              categories.map((item) => (
-                <option
-                  key={item.id}
-                  className='text-base border-0 outline-none capitalize bg-white text-headingColor'
-                  value={item.urlParamName}
-                >
-                  {item.name}
-                </option>
-              ))}
-          </select>
+        <div className='w-full flex items-center justify-around gap-3 flex-wrap'>
+          {categories &&
+            categories.map((item) => (
+              <p
+                onClick={() => setCategory(item.name)}
+                key={item.id}
+                className={`px-4 py-3 rounded-md text-xl text-textColor font-semibold cursor-pointer hover:shadow-md border border-gray-200 backdrop-blur-md ${
+                  item.name === category
+                    ? 'bg-red-400 text-white'
+                    : 'bg-transparent'
+                }`}
+              >
+                {item.name}
+              </p>
+            ))}
         </div>
 
-        <div className='group flex justify-center items-center flex-col border-2 border-dotted border-gray-300 w-full h-225 md:h-340 cursor-pointer rounded-lg'>
+        <div className='group flex justify-center items-center flex-col border-2 border-dotted border-gray-300 w-full h-225 md:h-340 cursor-pointer rounded-lg bg-white'>
           {isLoading ? (
             <Loader />
           ) : (
@@ -283,4 +238,4 @@ const CreateContainer = () => {
   )
 }
 
-export default CreateContainer
+export default DBNewItem

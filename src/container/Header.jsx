@@ -3,19 +3,21 @@ import { useState } from 'react'
 import {
   MdAdd,
   MdLogout,
-  MdShoppingBasket,
   MdOutlineDashboardCustomize,
+  MdShoppingBasket,
 } from 'react-icons/md'
 
+import { buttonClick } from '@/animations'
 import Avatar from '@/assets/img/avatar.png'
 import Logo from '@/assets/img/logo.png'
+import {
+  doClearCartAction,
+  doShowCartAction,
+} from '@/redux/reducers/cartReducer'
 import { doLogOutAction } from '@/redux/reducers/userReducer'
+import { isActiveStyle, isNotActiveStyle } from '@/utils/style'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { buttonClick } from '@/animations'
-import { doShowCartAction } from '@/redux/reducers/cartReducer'
-import { isActiveStyle, isNotActiveStyle } from '@/utils/style'
-import { doClearCartAction } from '@/redux/reducers/cartReducer'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -127,7 +129,7 @@ const Header = () => {
                         <MdAdd /> New Item
                       </p>
                     </Link>
-                    <Link to={'/dashboard'}>
+                    <Link to={'/dashboard/home'}>
                       <p
                         className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
                         onClick={() => setIsMenu(false)}

@@ -15,7 +15,6 @@ const foodSlice = createSlice({
     // set các giá trị khi đăng nhập thành công
     doGetFoodItemsAction: (state, action) => {
       state.foodItems = action.payload
-      console.log(action)
     },
   },
 })

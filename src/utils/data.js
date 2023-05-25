@@ -38,37 +38,37 @@ export const categories = [
   {
     id: 1,
     name: 'Chicken',
-    urlParamName: 'chicken',
+    category: 'Chicken',
   },
   {
     id: 2,
     name: 'Curry',
-    urlParamName: 'curry',
+    category: 'Curry',
   },
   {
     id: 3,
     name: 'Rice',
-    urlParamName: 'rice',
+    category: 'Rice',
   },
   {
     id: 4,
     name: 'Fish',
-    urlParamName: 'fish',
+    category: 'fiFishsh',
   },
   {
     id: 5,
     name: 'Fruits',
-    urlParamName: 'fruits',
+    category: 'Fruits',
   },
   {
     id: 6,
     name: 'Icecreams',
-    urlParamName: 'icecreams',
+    category: 'Icecreams',
   },
 
   {
     id: 7,
-    name: 'Soft Drinks',
-    urlParamName: 'drinks',
+    name: 'Drinks',
+    category: 'Drinks',
   },
 ]

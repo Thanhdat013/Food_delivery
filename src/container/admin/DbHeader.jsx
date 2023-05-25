@@ -6,7 +6,7 @@ import { buttonClick } from '@/animations'
 import { doLogOutAction } from '@/redux/reducers/userReducer'
 import { doClearCartAction } from '@/redux/reducers/cartReducer'
 import Avatar from '@/assets/img/avatar.png'
-const DbHeader = () => {
+const DBHeader = () => {
   const user = useSelector((state) => state.users.user)
   const dispatch = useDispatch()
   const logout = () => {
@@ -14,15 +14,15 @@ const DbHeader = () => {
     dispatch(doClearCartAction())
   }
   return (
-    <div className='w-full  flex items-center justify-between gap-3 px-4'>
+    <div className='w-full  flex items-center justify-between gap-3'>
       <p className=' text-2xl text-headingColor'>
         Welcome to City
-        {user?.name && (
-          <span className='block text-base text-gray-600'>{`Hello ${user.name}...!`}</span>
+        {user?.email && (
+          <span className='block text-base text-gray-600'>{`Hello ${user.email}...!`}</span>
         )}
       </p>
-      <div className='flex items-center justify-center gap-4'>
-        <div className='flex items-center justify-center gap-2 px-4 py-2 bg-lightOverLay backdrop-blur-md rounded-md shadow-md'>
+      <div className='flex  items-center justify-center gap-4'>
+        <div className='flex  items-center justify-center gap-2 min-w-[300px] px-4 py-2 bg-lightOverLay backdrop-blur-md rounded-md shadow-md bg-white'>
           <MdSearch className='text-2xl text-gray-600 cursor-pointer' />
           <input
             className='w-full h-full bg-transparent text-headingColor text-md font-medium border-none outline-none rounded-md'
@@ -39,11 +39,11 @@ const DbHeader = () => {
           <BsBellFill className='text-xl text-gray-600' />
         </motion.div>
         <div className=' flex items-center justify-center gap-2'>
-          <div className='w-10 h-10 rounded-full shadow-md cursor-pointer overflow-hidden'>
+          <div className='w-10 h-10 rounded-md  shadow-md cursor-pointer overflow-hidden'>
             <motion.img
-              whileTap={{ scale: 0.6 }}
+              {...buttonClick}
               src={user.picture ? user.picture : Avatar}
-              className='w-full h-full cursor-pointer rounded-full'
+              className='w-full h-full cursor-pointer rounded-md '
               alt='userprofile'
               referrerPolicy='no-referrer'
             />
@@ -61,4 +61,4 @@ const DbHeader = () => {
   )
 }
 
-export default DbHeader
+export default DBHeader

@@ -16,7 +16,6 @@ const usersSlice = createSlice({
       state.isAuthenticated = true
       state.isLoading = false
       state.user = action.payload
-      console.log(action)
     },
 
     doLogOutAction: (state) => {

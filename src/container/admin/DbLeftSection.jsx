@@ -1,9 +1,9 @@
 import Logo from '@/assets/img/logo.png'
 import { isActiveStyle, isNotActiveStyle } from '@/utils/style'
 import { NavLink } from 'react-router-dom'
-const DbLeftSection = () => {
+const DBLeftSection = () => {
   return (
-    <div className='h-full py-6 flex flex-col item bg-lightOverLay shadow-md min-w-210 backdrop-blur-md w-300 gap-3 '>
+    <div className='h-full py-6 flex flex-col item bg-lightOverLay shadow-md min-w-225 backdrop-blur-md w-275 gap-3 '>
       <NavLink to={'/'} className='flex items-center gap-4 px-6'>
         <img src={Logo} className='w-8 object-cover' alt='logo' />
         <p className='text-headingColor text-xl font-bold'> City</p>
@@ -11,7 +11,7 @@ const DbLeftSection = () => {
       <hr />
       <ul className=' flex items-start flex-col gap-10 px-6 mt-6'>
         <NavLink
-          to={'/dashboard'}
+          to={'home'}
           className={({ isActive }) =>
             isActive
               ? `${isActiveStyle} px-2 py-2 border-l-4 border-red-500`
@@ -21,33 +21,41 @@ const DbLeftSection = () => {
           Dashboard
         </NavLink>
         <NavLink
-          to={'/order'}
+          to={'order'}
           className={({ isActive }) =>
-            isActive ? isActiveStyle : isNotActiveStyle
+            isActive
+              ? `${isActiveStyle} px-2 py-2 border-l-4 border-red-500`
+              : isNotActiveStyle
           }
         >
           Order
         </NavLink>
         <NavLink
-          to={'/item'}
+          to={'items'}
           className={({ isActive }) =>
-            isActive ? isActiveStyle : isNotActiveStyle
+            isActive
+              ? `${isActiveStyle} px-2 py-2 border-l-4 border-red-500`
+              : isNotActiveStyle
           }
         >
           Items
         </NavLink>
         <NavLink
-          to={'/createItem'}
+          to={'createItem'}
           className={({ isActive }) =>
-            isActive ? isActiveStyle : isNotActiveStyle
+            isActive
+              ? `${isActiveStyle} px-2 py-2 border-l-4 border-red-500`
+              : isNotActiveStyle
           }
         >
           Add New Item
         </NavLink>
         <NavLink
-          to={'/users'}
+          to={'users'}
           className={({ isActive }) =>
-            isActive ? isActiveStyle : isNotActiveStyle
+            isActive
+              ? `${isActiveStyle} px-2 py-2 border-l-4 border-red-500`
+              : isNotActiveStyle
           }
         >
           Users
@@ -71,4 +79,4 @@ const DbLeftSection = () => {
   )
 }
 
-export default DbLeftSection
+export default DBLeftSection
