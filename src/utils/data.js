@@ -6,30 +6,30 @@ import Fi1 from '@/assets/img/fi1.png'
 export const heroData = [
   {
     id: 1,
-    name: 'Icecream',
-    decp: 'Chocolate & vanilla',
+    name: 'Kem Chocolate',
+    decp: 'Chocolate và vanilla',
     price: '52000',
     imageSrc: I1,
   },
   {
     id: 2,
-    name: 'Strawberries',
-    decp: 'Fresh Strawberries',
+    name: 'Dâu tây',
+    decp: 'Dâu tây sạch',
     price: '25000',
     imageSrc: F1,
   },
   {
     id: 3,
-    name: 'Chicken Kebab',
-    decp: 'Mixed Kebab Plate',
-    price: '90000',
+    name: 'Mẹt gà',
+    decp: 'Mẹt gà 5 món',
+    price: '290000',
     imageSrc: C3,
   },
   {
     id: 4,
-    name: 'Fish Kebab',
-    decp: 'Mixed Fish Kebab',
-    price: '110000',
+    name: 'Set hải sản',
+    decp: 'Set hải sản tổng hợp',
+    price: '350000',
     imageSrc: Fi1,
   },
 ]
@@ -37,38 +37,38 @@ export const heroData = [
 export const categories = [
   {
     id: 1,
-    name: 'Chicken',
+    name: 'Gà',
     category: 'chicken',
   },
   {
     id: 2,
-    name: 'Curry',
+    name: 'Cà ri',
     category: 'curry',
   },
   {
     id: 3,
-    name: 'Rice',
+    name: 'Cơm',
     category: 'rice',
   },
   {
     id: 4,
-    name: 'Fish',
+    name: 'Hải sản',
     category: 'fish',
   },
   {
     id: 5,
-    name: 'Fruits',
+    name: 'Hoa quả',
     category: 'fruits',
   },
   {
     id: 6,
-    name: 'Icecreams',
+    name: 'Tráng miệng',
     category: 'icecreams',
   },
 
   {
     id: 7,
-    name: 'Drinks',
+    name: 'Đồ uống',
     category: 'drinks',
   },
 ]

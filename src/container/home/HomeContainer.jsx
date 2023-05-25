@@ -71,7 +71,8 @@ const HomeContainer = () => {
                 </p>
 
                 <p className='text-sm font-semibold text-headingColor'>
-                  <span className='text-xs text-red-600'>$</span> {n.price}
+                  {String(n.price).replace(/(.)(?=(\d{3})+$)/g, '$1,')} &nbsp;
+                  <span className='text-xs text-red-600'>VNĐ</span>
                 </p>
               </div>
             ))}

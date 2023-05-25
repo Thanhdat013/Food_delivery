@@ -6,7 +6,7 @@ const DBItems = () => {
     { title: 'Name', field: 'title' },
     {
       title: 'Image',
-      field: 'image',
+      field: 'imageURL',
       render: (rowData) => (
         <img
           style={{
@@ -15,7 +15,7 @@ const DBItems = () => {
             display: 'flex',
             justifyContent: 'center',
           }}
-          src={rowData.image}
+          src={rowData.imageURL}
         />
       ),
     },
@@ -38,11 +38,11 @@ const DBItems = () => {
     },
   ]
   const foodItems = useSelector((state) => state.foodItems.foodItems)
-
+  const title = 'List of items'
   const dataTable = foodItems.map((item) => {
     return {
       title: item.title,
-      image: item.imageURL,
+      imageURL: item.imageURL,
       price: String(item.price).replace(/(.)(?=(\d{3})+$)/g, '$1,'),
       calories: item.calories,
       category: item.category,
@@ -51,7 +51,12 @@ const DBItems = () => {
 
   return (
     <div className='flex items-center justify-self-center mt-6  gap-4 py-6 w-full'>
-      <DataTable columns={columns} data={dataTable} actions={actions} />
+      <DataTable
+        columns={columns}
+        data={dataTable}
+        actions={actions}
+        title={title}
+      />
     </div>
   )
 }
