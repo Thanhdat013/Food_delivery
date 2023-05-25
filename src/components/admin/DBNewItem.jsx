@@ -19,7 +19,7 @@ import { storage } from '../../firebase.config'
 import { doGetFoodItemsAction } from '../../redux/reducers/foodReducer'
 import { categories } from '../../utils/data'
 import { getAllFoodItems, saveItem } from '../../utils/firebaseFunctions'
-import Loader from '../home/Loader'
+import Loader from '@/container/home/Loader'
 
 const DBNewItem = () => {
   const [title, setTitle] = useState('')

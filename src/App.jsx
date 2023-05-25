@@ -8,13 +8,13 @@ import { Footer, Header, Login, MainContainer } from './container'
 import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
 import { getAllFoodItems } from './utils/firebaseFunctions'
 import About from '@/container/about/About'
-import DBHeader from '@/container/admin/DBHeader'
-import DBHome from '@/container/admin/DBHome'
-import DBOrder from '@/container/admin/DBOrder'
-import DBLeftSection from '@/container/admin/DBLeftSection'
-import DBItems from '@/container/admin/DBItems'
-import DBUsers from '@/container/admin/DBUsers'
-import DBNewItem from '@/container/admin/DBNewItem'
+import DBHeader from '@/components/admin/DBHeader'
+import DBHome from '@/components/admin/DBHome'
+import DBOrder from '@/components/admin/DBOrder'
+import DBLeftSection from '@/components/admin/DBLeftSection'
+import DBItems from '@/components/admin/DBItems'
+import DBUsers from '@/components/admin/DBUsers'
+import DBNewItem from '@/components/admin/DBNewItem'
 
 const App = () => {
   function parseJwt(token) {
@@ -63,7 +63,7 @@ const App = () => {
     return (
       <div className='w-screen h-screen flex  bg-primary'>
         <div className='h-full '>
-          <DBLeftSection />s
+          <DBLeftSection />
         </div>
 
         <div className='flex flex-col py-12 px-12 flex-1  h-full'>
