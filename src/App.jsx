@@ -6,7 +6,7 @@ import {
   DBOrder,
   DBUsers,
   DBLeftSection,
-} from './container/admin'
+} from '@/container/admin'
 import { doLoginAction } from '@/redux/reducers/userReducer'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -64,9 +64,7 @@ const App = () => {
   const LayoutAdmin = () => {
     return (
       <div className='w-screen h-screen flex  bg-primary'>
-        <div className='h-full '>
-          <DBLeftSection />
-        </div>
+        <div className='h-full '>{/* <DBLeftSection /> */}</div>
 
         <div className='flex flex-col py-12 px-12 flex-1  h-full'>
           <DBHeader />
