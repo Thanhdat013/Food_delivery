@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { Footer, Header, Login, MainContainer } from './container'
+import { ErrorPage, Footer, Header, Login, MainContainer } from './container'
 import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
 import { getAllFoodItems } from './utils/firebaseFunctions'
 import About from '@/container/about/About'
@@ -80,6 +80,7 @@ const App = () => {
     {
       path: '/',
       element: <Layout />,
+      errorElement: <ErrorPage />,
       children: [
         { index: true, element: <MainContainer /> },
         {
