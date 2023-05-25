@@ -5,10 +5,18 @@ const DBItems = () => {
   const columns = [
     { title: 'Name', field: 'title' },
     {
-      title: 'Avatar',
-      field: 'avatar',
+      title: 'Image',
+      field: 'image',
       render: (rowData) => (
-        <img style={{ height: 36, borderRadius: '50%' }} src={rowData.avatar} />
+        <img
+          style={{
+            height: 36,
+            // borderRadius: '50%',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+          src={rowData.image}
+        />
       ),
     },
 
@@ -18,9 +26,9 @@ const DBItems = () => {
   ]
   const actions = [
     {
-      icon: 'save',
-      tooltip: 'Save Item',
-      onClick: (event, rowData) => alert('You saved ' + rowData.name),
+      icon: 'edit',
+      tooltip: 'Edit Item',
+      onClick: (event, rowData) => alert('You want to edit ' + rowData.name),
     },
     {
       icon: 'delete',
@@ -34,7 +42,7 @@ const DBItems = () => {
   const dataTable = foodItems.map((item) => {
     return {
       title: item.title,
-      avatar: item.imageURL,
+      image: item.imageURL,
       price: String(item.price).replace(/(.)(?=(\d{3})+$)/g, '$1,'),
       calories: item.calories,
       category: item.category,

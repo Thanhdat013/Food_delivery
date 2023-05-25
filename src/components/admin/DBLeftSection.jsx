@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 const DBLeftSection = () => {
   return (
-    <div className='h-full py-6 flex flex-col item bg-lightOverLay shadow-md min-w-225 backdrop-blur-md w-275 gap-3 '>
+    <div className='h-full  py-6 flex flex-col item bg-lightOverLay shadow-md min-w-225 backdrop-blur-md w-275 gap-3 '>
       <NavLink to={'/'} className='flex items-center gap-4 px-6'>
         <img src={Logo} className='w-8 object-cover' alt='logo' />
         <p className='text-headingColor text-xl font-bold'> City</p>

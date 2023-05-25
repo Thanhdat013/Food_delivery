@@ -17,6 +17,16 @@ body {
   overflow-x: hidden;
 }
 
+html ::-webkit-scrollbar {
+  border-radius: 0px;
+  width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(22, 24, 35, 0.06);
+}
+
 .MuiPaper-root {
   width: 100%;
 }

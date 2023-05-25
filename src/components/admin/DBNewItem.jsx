@@ -15,10 +15,11 @@ import {
 } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { storage } from '../../firebase.config'
-import { doGetFoodItemsAction } from '../../redux/reducers/foodReducer'
-import { categories } from '../../utils/data'
+import { storage } from '@/firebase.config'
+import { doGetFoodItemsAction } from '@/redux/reducers/foodReducer'
+import { categories } from '@/utils/data'
 import { getAllFoodItems, saveItem } from '../../utils/firebaseFunctions'
+
 import Loader from '@/container/home/Loader'
 
 const DBNewItem = () => {
@@ -29,6 +30,7 @@ const DBNewItem = () => {
   const [imageAsset, setImageAsset] = useState(null)
 
   const [isLoading, setIsLoading] = useState(false)
+  const [progress, setProgress] = useState('')
   const dispatch = useDispatch()
 
   const uploadImage = (e) => {
@@ -40,12 +42,10 @@ const DBNewItem = () => {
     uploadTask.on(
       'state_changed',
       (snapshot) => {
-        const uploadProgress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
       },
       (error) => {
         console.log(error)
-
         toast.error('Error while uploading : Try AGain 🙇')
         setTimeout(() => {
           setIsLoading(false)
@@ -60,7 +60,7 @@ const DBNewItem = () => {
       }
     )
   }
-
+  // delete image from firebase
   const deleteImage = () => {
     setIsLoading(true)
     const deleteRef = ref(storage, imageAsset)
@@ -123,7 +123,7 @@ const DBNewItem = () => {
 
   return (
     <div className='w-full h-full flex items-center justify-center flex-col mt-16'>
-      <div className='w-[90%] md:w-[50%] border border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center gap-4'>
+      <div className='w-[70%] xl:w-[50%]  border border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center gap-4'>
         <div className='w-full py-2 border-b border-gray-300 flex items-center gap-2'>
           <MdFastfood className='text-xl text-gray-700' />
           <input
@@ -131,7 +131,7 @@ const DBNewItem = () => {
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder='Give me a title...'
+            placeholder='Give me a name...'
             className='w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor'
           />
         </div>
@@ -155,7 +155,31 @@ const DBNewItem = () => {
 
         <div className='group flex justify-center items-center flex-col border-2 border-dotted border-gray-300 w-full h-225 md:h-340 cursor-pointer rounded-lg bg-white'>
           {isLoading ? (
-            <Loader />
+            <div className='w-full h-full flex flex-col items-center justify-evenly px-24 '>
+              <Loader />
+              {Math.round(progress > 0) && (
+                <div className='w-full flex flex-col items-center justify-center gap-2'>
+                  <div className='flex justify-between w-full'>
+                    <span className='text-base font-medium text-textColor'>
+                      Progress
+                    </span>
+                    <span className='text-sm font-medium text-textColor'>
+                      {Math.round(progress) > 0 && (
+                        <>{`${Math.round(progress)}%`}</>
+                      )}
+                    </span>
+                  </div>
+                  <div className='w-full bg-gray-200 rounded-full h-2 '>
+                    <div
+                      className='bg-red-600 h-2 rounded-full transition-all duration-600 ease-in-out'
+                      style={{
+                        width: `${Math.round(progress)}%`,
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              )}
+            </div>
           ) : (
             <>
               {!imageAsset ? (

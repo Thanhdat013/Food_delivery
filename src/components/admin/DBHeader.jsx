@@ -13,8 +13,9 @@ const DBHeader = () => {
     dispatch(doLogOutAction())
     dispatch(doClearCartAction())
   }
+
   return (
-    <div className='w-full  flex items-center justify-between gap-3'>
+    <div className='  flex items-center justify-between gap-3  '>
       <p className=' text-2xl text-headingColor'>
         Welcome to City
         {user?.email && (

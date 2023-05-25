@@ -17,13 +17,6 @@ import {
   DBOrder,
   DBUsers,
 } from './components/admin'
-// import DBHeader from '@/components/admin/DBHeader'
-// import DBHome from '@/components/admin/DBHome'
-// import DBOrder from '@/components/admin/DBOrder'
-// import DBLeftSection from '@/components/admin/DBLeftSection'
-// import DBItems from '@/components/admin/DBItems'
-// import DBUsers from '@/components/admin/DBUsers'
-// import DBNewItem from '@/components/admin/DBNewItem'
 
 const App = () => {
   function parseJwt(token) {
@@ -70,16 +63,15 @@ const App = () => {
 
   const LayoutAdmin = () => {
     return (
-      <div className='w-screen h-screen flex  bg-primary'>
-        <div className='h-full '>
+      <div className='w-screen  min-h-screen flex relative bg-primary '>
+        <div className='h-auto'>
           <DBLeftSection />
         </div>
 
-        <div className='flex flex-col py-12 px-12 flex-1  h-full'>
+        <div className='flex flex-col w-full py-12 px-12 flex-1 max-h-screen h-full overflow-scroll scroll-smooth'>
           <DBHeader />
-          <div>
-            <Outlet />
-          </div>
+
+          <Outlet />
         </div>
       </div>
     )
@@ -131,7 +123,7 @@ const App = () => {
       <RouterProvider router={router} />
       <ToastContainer
         position='top-right'
-        autoClose={3000}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
