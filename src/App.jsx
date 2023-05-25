@@ -1,12 +1,3 @@
-import {
-  DBHeader,
-  DBHome,
-  DBItems,
-  DBNewItem,
-  DBOrder,
-  DBUsers,
-  DBLeftSection,
-} from '@/container/admin'
 import { doLoginAction } from '@/redux/reducers/userReducer'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -17,6 +8,13 @@ import { Footer, Header, Login, MainContainer } from './container'
 import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
 import { getAllFoodItems } from './utils/firebaseFunctions'
 import About from './container/about/About'
+import DBHeader from './container/admin/DBHeader'
+import DBHome from './container/admin/DBHome'
+import DBOrder from './container/admin/DBOrder'
+import DBLeftSection from './container/admin/DBLeftSection'
+import DBItems from './container/admin/DBItems'
+import DBUsers from './container/admin/DBUsers'
+import DBNewItem from './container/admin/DBNewItem'
 
 const App = () => {
   function parseJwt(token) {

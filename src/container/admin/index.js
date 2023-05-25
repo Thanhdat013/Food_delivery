@@ -1,10 +1,1 @@
-export { default as Dashboard } from './Dashboard'
-export { default as DBLeftSection } from './DBLeftSection'
-export { default as DBRightSection } from './DBRightSection'
-export { default as DBHeader } from './DBHeader'
-export { default as DBHome } from './DBHome'
-export { default as DBItems } from './DBItems'
-export { default as DBUsers } from './DBUsers'
-export { default as DBOrder } from './DBOrder'
-export { default as DBNewItem } from './DBNewItem'
-export { default as DataTable } from './DataTable'
+
