@@ -5,7 +5,6 @@ import {
   DBNewItem,
   DBOrder,
   DBUsers,
-  DBLeftSection,
 } from '@/container/admin'
 import { doLoginAction } from '@/redux/reducers/userReducer'
 import { useEffect } from 'react'
@@ -14,9 +13,9 @@ import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Footer, Header, Login, MainContainer } from './container'
+import About from './container/about/About'
 import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
 import { getAllFoodItems } from './utils/firebaseFunctions'
-import About from './container/about/About'
 
 const App = () => {
   function parseJwt(token) {
