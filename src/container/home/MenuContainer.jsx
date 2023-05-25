@@ -23,20 +23,21 @@ const MenuContainer = () => {
                 whileTap={{ scale: 0.75 }}
                 key={category.id}
                 className={`group ${
-                  filter === category.urlParamName ? 'bg-cartNumBg' : 'bg-card'
+                  filter === category.category ? 'bg-cartNumBg' : 'bg-card'
                 } w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-cartNumBg `}
-                onClick={() => setFilter(category.urlParamName)}
+                onClick={() => {
+                  setFilter(category.category)
+                  console.log(category.category)
+                }}
               >
                 <div
                   className={`w-10 h-10 rounded-full shadow-lg ${
-                    filter === category.urlParamName
-                      ? 'bg-white'
-                      : 'bg-cartNumBg'
+                    filter === category.category ? 'bg-white' : 'bg-cartNumBg'
                   } group-hover:bg-white flex items-center justify-center`}
                 >
                   <IoFastFood
                     className={`${
-                      filter === category.urlParamName
+                      filter === category.category
                         ? 'text-textColor'
                         : 'text-white'
                     } group-hover:text-textColor text-lg`}
@@ -44,7 +45,7 @@ const MenuContainer = () => {
                 </div>
                 <p
                   className={`text-sm ${
-                    filter === category.urlParamName
+                    filter === category.category
                       ? 'text-white'
                       : 'text-textColor'
                   } group-hover:text-white`}

@@ -13,9 +13,10 @@ import { useDispatch } from 'react-redux'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { Header, Login, MainContainer } from './container'
+import { Footer, Header, Login, MainContainer } from './container'
 import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
 import { getAllFoodItems } from './utils/firebaseFunctions'
+import About from './container/about/About'
 
 const App = () => {
   function parseJwt(token) {
@@ -55,6 +56,7 @@ const App = () => {
         <main className='mt-14 md:mt-20 px-4 md:px-16 py-4 w-full'>
           <Outlet />
         </main>
+        <Footer />
       </div>
     )
   }
@@ -79,7 +81,13 @@ const App = () => {
     {
       path: '/',
       element: <Layout />,
-      children: [{ index: true, element: <MainContainer /> }],
+      children: [
+        { index: true, element: <MainContainer /> },
+        {
+          path: 'about',
+          element: <About />,
+        },
+      ],
     },
 
     {

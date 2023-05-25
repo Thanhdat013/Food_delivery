@@ -29,6 +29,7 @@ export default {
         600: '600px',
         650: '650px',
         685: '685px',
+        700: '700px',
         800: '800px',
         '90vh': '90vh',
       },
@@ -46,6 +47,7 @@ export default {
       },
       colors: {
         headingColor: '#2e2e2e',
+        footerBgg: '#B6B6B6',
         textColor: '#515151',
         cartNumBg: '#e80013',
         primary: '#f5f3f3',

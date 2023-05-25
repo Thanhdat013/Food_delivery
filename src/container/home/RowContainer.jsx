@@ -22,7 +22,6 @@ const RowContainer = ({ flag, data, scrollValue }) => {
 
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue
-    console.log(scrollValue)
   }, [scrollValue])
 
   //
@@ -37,9 +36,9 @@ const RowContainer = ({ flag, data, scrollValue }) => {
       }`}
     >
       {data && data.length > 0 ? (
-        data.map((item) => (
+        data.map((item, index) => (
           <div
-            key={item?.id}
+            key={index}
             className='w-275 h-[200px] min-w-[275px] md:w-300 md:min-w-[300px]  bg-cardOverlay rounded-lg py-2 px-4  my-12 backdrop-blur-lg hover:drop-shadow-lg flex flex-col items-center justify-evenly relative'
           >
             <div className='w-full flex items-center justify-between'>
