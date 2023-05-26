@@ -12,7 +12,7 @@ const MenuContainer = () => {
   return (
     <section className='w-full my-6' id='menu'>
       <div className='w-full flex flex-col items-center justify-center'>
-        <p className='text-2xl font-semibold capitalize text-headingColor relative before:absolute before:rounded-lg before:content before:w-16 before:h-1 before:-bottom-2 before:left-0 before:bg-gradient-to-tr from-orange-400 to-orange-600 transition-all ease-in-out duration-100 mr-auto'>
+        <p className='text-2xl font-semibold capitalize text-headingColor relative before:absolute before:rounded-lg before:content before:w-20 before:h-1 before:-bottom-2 before:left-0 before:bg-gradient-to-tr from-teal-100 to-teal-400 transition-all ease-in-out duration-100 mr-auto'>
           Các món ăn của chúng tôi
         </p>
 
@@ -23,8 +23,8 @@ const MenuContainer = () => {
                 whileTap={{ scale: 0.75 }}
                 key={category.id}
                 className={`group ${
-                  filter === category.category ? 'bg-cartNumBg' : 'bg-card'
-                } w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-cartNumBg `}
+                  filter === category.category ? 'bg-teal-300' : 'bg-card'
+                } w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-teal-300 `}
                 onClick={() => {
                   setFilter(category.category)
                   console.log(category.category)
@@ -32,7 +32,7 @@ const MenuContainer = () => {
               >
                 <div
                   className={`w-10 h-10 rounded-full shadow-lg ${
-                    filter === category.category ? 'bg-white' : 'bg-cartNumBg'
+                    filter === category.category ? 'bg-white' : 'bg-teal-300'
                   } group-hover:bg-white flex items-center justify-center`}
                 >
                   <IoFastFood

@@ -88,7 +88,7 @@ const Header = () => {
             className='relative flex items-center justify-center'
             onClick={showCart}
           >
-            <MdShoppingBasket className='text-textColor text-2xl  cursor-pointer' />
+            <MdShoppingBasket className='text-teal-300 text-3xl  cursor-pointer' />
             {cartItems && cartItems.length > 0 && (
               <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
                 <p className='text-xs text-white font-semibold'>
@@ -162,7 +162,7 @@ const Header = () => {
           className='relative flex items-center justify-center'
           onClick={showCart}
         >
-          <MdShoppingBasket className='text-textColor text-2xl  cursor-pointer' />
+          <MdShoppingBasket className='text-teal-500 text-4xl  cursor-pointer' />
           {cartItems && cartItems.length > 0 && (
             <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
               <p className='text-xs text-white font-semibold'>
@@ -173,8 +173,7 @@ const Header = () => {
         </div>
 
         <Link to={'/'} className='flex items-center gap-2'>
-          <img src={Logo} className='w-8 object-cover' alt='logo' />
-          <p className='text-headingColor text-xl font-bold'> City</p>
+          <img src={Logo} className='w-16 object-cover' alt='logo' />
         </Link>
 
         <div className='relative'>
@@ -197,7 +196,12 @@ const Header = () => {
                     className='w-44 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0'
                   >
                     <ul className='flex flex-col  '>
-                      <NavLink to={'/'}>
+                      <NavLink
+                        to={'/'}
+                        className={({ isActive }) =>
+                          isActive ? isActiveStyle : isNotActiveStyle
+                        }
+                      >
                         <p
                           className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base rounded-t-lg'
                           onClick={() => setIsMenu(false)}
@@ -205,7 +209,12 @@ const Header = () => {
                           <MdOutlineHome /> Trang chủ
                         </p>
                       </NavLink>
-                      <NavLink to={'/about'}>
+                      <NavLink
+                        to={'/about'}
+                        className={({ isActive }) =>
+                          isActive ? isActiveStyle : isNotActiveStyle
+                        }
+                      >
                         <p
                           className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
                           onClick={() => setIsMenu(false)}
@@ -215,7 +224,12 @@ const Header = () => {
                         </p>
                       </NavLink>
 
-                      <NavLink to={'/service'}>
+                      <NavLink
+                        to={'/service'}
+                        className={({ isActive }) =>
+                          isActive ? isActiveStyle : isNotActiveStyle
+                        }
+                      >
                         <p
                           className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
                           onClick={() => setIsMenu(false)}
@@ -291,7 +305,7 @@ const Header = () => {
                   </ul>
                   {user && user.email === 'ktd1302@gmail.com' && (
                     <>
-                      <NavLink to={'/dashboard'}>
+                      <NavLink to={'/dashboard/home'}>
                         <p
                           className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
                           onClick={() => setIsMenu(false)}

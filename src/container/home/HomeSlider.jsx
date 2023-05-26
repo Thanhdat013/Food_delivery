@@ -31,6 +31,11 @@ const HomeSlider = ({ data }) => {
       }
     >
       <Swiper
+        // breakpoints={{
+        //   xs: { slidesPerView: 1 },
+        //   md: { slidesPerView: 3 },
+        //   lg: { slidesPerView: 5 },
+        // }}
         slidesPerView={5}
         centeredSlides={false}
         spaceBetween={30}
@@ -63,7 +68,7 @@ const HomeSlider = ({ data }) => {
                 </motion.div>
                 <motion.div
                   whileTap={{ scale: 0.75 }}
-                  className='w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8'
+                  className='w-8 h-8 rounded-full bg-teal-400 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8'
                   onClick={() => addToCart(item)}
                 >
                   <MdShoppingBasket className='text-white' />
