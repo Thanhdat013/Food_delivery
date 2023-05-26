@@ -6,3 +6,12 @@ export const fadeInOut = {
   animate: { opacity: 1 },
   exit: { opacity: 0 },
 }
+export const staggerFadeInOut = (i) => {
+  return {
+    initial: { opacity: 0, y: 50 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: 50 },
+    transition: { duration: 1, delay: i * 0.15 },
+    key: { i },
+  }
+}

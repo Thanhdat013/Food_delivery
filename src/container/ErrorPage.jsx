@@ -14,8 +14,8 @@ const ErrorPage = () => {
         <p className='text-2xl text-black backdrop-blur-lg bg-transparent flex flex-col items-center gap-4'>
           Page not found
           <span className='text-2xl text-black backdrop-blur-lg'>
-            Sorry. The page you are looking for does`t exist or an other error
-            occurred! &nbsp;
+            {` Sorry. The page you are looking for does't exist or an other error occurred!`}{' '}
+            &nbsp;
           </span>
           <span
             className='text-headingColor hover:text-red-500 cursor-pointer '

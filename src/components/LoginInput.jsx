@@ -7,7 +7,9 @@ const LoginInput = ({
   inputState,
   inputStateFunction,
   type,
-  isSignUp,
+  showHidePassword,
+  setShowHidePassword,
+  iconPassword,
 }) => {
   return (
     <motion.div
@@ -18,10 +20,16 @@ const LoginInput = ({
       <input
         type={type}
         placeholder={placeholder}
-        className='w-full h-full bg-transparent text-headingColor text-md font-medium border-none outline-none rounded-md '
+        className='w-full h-full bg-transparent text-headingColor text-md font-medium border-none outline-none rounded-md placeholder:text-gray-500 '
         value={inputState}
         onChange={(e) => inputStateFunction(e.target.value)}
       />
+      <div
+        className='cursor-pointer '
+        onClick={() => setShowHidePassword(!showHidePassword)}
+      >
+        {iconPassword}
+      </div>
     </motion.div>
   )
 }

@@ -1,13 +1,13 @@
 import NotFound from '@/assets/img/NotFound.svg'
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { MdShoppingBasket } from 'react-icons/md'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { doAddCartItemsAction } from '../../redux/reducers/cartReducer'
 import { useNavigate } from 'react-router-dom'
 
-const RowContainer = ({ flag, data, scrollValue }) => {
+const RowContainer = ({ flag, data }) => {
   const rowContainer = useRef()
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated)
   const dispatch = useDispatch()
@@ -19,10 +19,6 @@ const RowContainer = ({ flag, data, scrollValue }) => {
       dispatch(doAddCartItemsAction(data))
     }
   }
-
-  useEffect(() => {
-    rowContainer.current.scrollLeft += scrollValue
-  }, [scrollValue])
 
   //
   return (
@@ -70,9 +66,8 @@ const RowContainer = ({ flag, data, scrollValue }) => {
               </p>
               <div className='flex mt-1 items-center gap-8'>
                 <p className='text-lg text-headingColor font-semibold'>
-                  <span className='text-sm text-red-500'>VNĐ &nbsp;</span>
-
                   {String(item?.price).replace(/(.)(?=(\d{3})+$)/g, '$1,')}
+                  <span className='text-sm text-red-500'>&nbsp;VNĐ </span>
                 </p>
               </div>
             </div>

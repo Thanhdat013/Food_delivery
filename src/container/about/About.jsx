@@ -9,17 +9,17 @@ const About = () => {
     <section className='w-full h-auto flex flex-col mb-4'>
       <div className='grid grid-cols-1 lg:grid-cols-2  gap-2 w-full '>
         <div className='py-2  flex flex-col items-start justify-center gap-6'>
-          <p className='text-[2.5rem] lg:text-[4.5rem] font-bold tracking-wide text-headingColor'>
-            It’s not just a Food Its a
+          <p className='text-[2.5rem] lg:text-[4.5rem] capitalize font-bold tracking-wide text-headingColor'>
+            Không chỉ là món ăn, mà còn là
             <span className='text-orange-600 text-[3rem] lg:text-[5rem]'>
-              &nbsp;Expirence!
+              &nbsp;Trải Nghiệm!
             </span>
           </p>
           <p className='text-base text-textColor text-center md:text-left md:w-[80%]'>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima
-            velit eaque fugit distinctio est nam voluptatum architecto, porro
-            iusto deserunt recusandae ipsa minus eos sunt, dolores illo repellat
-            facere suscipit!
+            Với phương châm luôn đặt chất lượng và sự trải nghiệm với từng món
+            ăn mà thực khách ăn lên hàng đầu. Chúng tôi luôn luôn ý thức được
+            trách nhiệm của mình và luôn nỗ lực cố gắng để để làm hài lòng mọi
+            thực khách khi sử dụng dịch vụ của chúng tôi
           </p>
         </div>
         <div className='py-2 flex-1 flex items-center relative'>
@@ -62,16 +62,16 @@ const About = () => {
         '
         >
           <p className='flex items-center justify-center text-2xl w-[20%] text-headingColor py-2 px-24 rounded-full bg-red-200 backdrop-blur-sm shadow-md cursor-pointer'>
-            Help
+            Hỗ&nbsp;trợ
           </p>
           <p className='text-base text-headingColor items-center hover:underline cursor-pointer'>
-            Help Center
+            Trung tâm hỗ trợ
           </p>
           <p className='text-base text-headingColor items-center hover:underline cursor-pointer'>
-            Help Forum
+            Các câu hỏi thường gặp
           </p>
           <p className='text-base text-headingColor items-center hover:underline cursor-pointer'>
-            Help Center
+            Phản hồi của khách hàng
           </p>
         </div>
 
@@ -80,14 +80,14 @@ const About = () => {
         '
         >
           <p className='flex items-center justify-center text-2xl w-[20%] text-headingColor py-2 px-24 rounded-full bg-gray-100 backdrop-blur-sm shadow-md cursor-pointer'>
-            Contact
+            Liên&nbsp;hệ
           </p>
           <p className='w-full text-base text-headingColor '>
-            Phone number: +84 325 552 221
+            Số điện thoại: +84 325 552 221
           </p>
           <p className='w-full text-base text-headingColor '>
-            Location: No.08 Ha Hoi Hamlet, Tran Hung Dao Ward, Hoan Kiem
-            District, Hanoi City
+            Địa chỉ: Số 8 xóm Hạ Hồi, phường Trần Hưng Đạo, quận Hoàn Kiếm,
+            thành phố Hà Nội
           </p>
         </div>
       </div>

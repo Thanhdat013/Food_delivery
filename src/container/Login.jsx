@@ -2,7 +2,12 @@ import LoginBgc from '@/assets/img/Login_bgc_2.png'
 import Logo from '@/assets/img/logo.png'
 import { LoginInput } from '@/components'
 import { useState } from 'react'
-import { AiOutlineMail, AiFillLock } from 'react-icons/ai'
+import {
+  AiOutlineMail,
+  AiFillLock,
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+} from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
 import { motion } from 'framer-motion'
 import { buttonClick } from '@/animations'
@@ -26,6 +31,8 @@ const Login = () => {
   const [userPassword, setUserPassword] = useState('')
   const [userConfirmPassword, setUserConfirmPassword] = useState('')
   const [isSignUp, setIsSignUp] = useState(false)
+  const [showHidePassword, setShowHidePassword] = useState(false)
+
   const dispatch = useDispatch()
   // login with google
 
@@ -137,24 +144,26 @@ const Login = () => {
       />
 
       {/* content box */}
-      <div className='flex flex-col items-center bg-lightOverLay w-[80%] md:w-508 h-full z-10 backdrop-blur-md p-4 px-4 py-12 gap-6'>
+      <div className='flex flex-col items-center bg-lightOverLay w-full md:w-508 h-full z-10 backdrop-blur-md p-4 px-4 py-12 gap-6'>
         <div
           className='flex items-center justify-center gap-4 w-full cursor-pointer'
           onClick={() => navigate('/', { relative: true })}
         >
-          <img src={Logo} className='w-8' alt='logo' />
-          <p className='text-xl font-semibold text-headingColor'>City</p>
+          <img src={Logo} className='w-16' alt='logo' />
+          {/* <p className='text-xl font-semibold text-headingColor'>City</p> */}
         </div>
         {/* welcome text */}
-        <p className='text-3xl font-semibold text-headingColor'>Welcome Back</p>
+        <p className='text-3xl font-semibold text-headingColor'>
+          Chào mừng bạn quay lại
+        </p>
         <p className='text-xl text-center -mt-6 '>
-          {isSignUp ? 'Sign up' : 'Sign in'} with following
+          {isSignUp ? 'Đăng ký' : 'Đăng nhập'} với các cách sau
         </p>
 
         {/* input section */}
         <div className='w-full  flex flex-col items-center justify-center gap-6 px-4 md:px-12 py-4'>
           <LoginInput
-            placeholder='Enter email'
+            placeholder='Nhập email'
             icon={<AiOutlineMail className='text-xl text-textColor' />}
             inputState={userEmail}
             inputStateFunction={setUserEmail}
@@ -162,47 +171,65 @@ const Login = () => {
             isSignUp={isSignUp}
           />
           <LoginInput
-            placeholder='Enter password'
+            placeholder='Nhập mật khẩu'
             icon={<AiFillLock className='text-xl text-textColor' />}
             inputState={userPassword}
             inputStateFunction={setUserPassword}
-            type='password'
+            type={showHidePassword ? 'text' : 'password'}
             isSignUp={isSignUp}
+            showHidePassword={showHidePassword}
+            setShowHidePassword={setShowHidePassword}
+            iconPassword={
+              showHidePassword ? (
+                <AiOutlineEye className='text-xl text-textColor' />
+              ) : (
+                <AiOutlineEyeInvisible className='text-xl text-textColor' />
+              )
+            }
           />
 
           {isSignUp && (
             <LoginInput
-              placeholder='Confirm password'
+              placeholder='Xác nhận mật khẩu'
               icon={<AiFillLock className='text-xl text-textColor' />}
               inputState={userConfirmPassword}
               inputStateFunction={setUserConfirmPassword}
-              type='password'
+              type={showHidePassword ? 'text' : 'password'}
               isSignUp={isSignUp}
+              showHidePassword={showHidePassword}
+              setShowHidePassword={setShowHidePassword}
+              iconPassword={
+                showHidePassword ? (
+                  <AiOutlineEye className='text-xl text-textColor' />
+                ) : (
+                  <AiOutlineEyeInvisible className='text-xl text-textColor' />
+                )
+              }
             />
           )}
 
           {!isSignUp ? (
             <p>
-              Doesn`t have and account?&nbsp;
+              Bạn chưa có tài khoản?&nbsp;
               <motion.button
                 {...buttonClick}
                 className='text-red-500 underline bg-transparent'
                 onClick={() => setIsSignUp(true)}
               >
                 {' '}
-                Sign up
+                Đăng ký
               </motion.button>
             </p>
           ) : (
             <p>
-              Already have and account?&nbsp;
+              Bạn đã có tài khoản?&nbsp;
               <motion.button
                 {...buttonClick}
                 className='text-red-500 underline bg-transparent'
                 onClick={() => setIsSignUp(false)}
               >
                 {' '}
-                Sign in
+                Đăng nhập
               </motion.button>
             </p>
           )}
@@ -211,35 +238,35 @@ const Login = () => {
           {isSignUp ? (
             <motion.button
               {...buttonClick}
-              className='w-full rounded-md  bg-red-500 px-4 py-2 text-white capitalize text-xl hover:bg-red-400 transition-all duration-100'
+              className='w-full rounded-2xl  bg-red-500 px-4 py-2 text-white capitalize text-xl hover:bg-red-400 transition-all duration-100'
               onClick={signUpWithEmailPassword}
             >
-              Sign Up
+              Đăng ký
             </motion.button>
           ) : (
             <motion.button
               {...buttonClick}
-              className='w-full rounded-md  bg-red-500 px-4 py-2 text-white capitalize text-xl hover:bg-red-400 transition-all duration-100'
+              className='w-full rounded-2xl  bg-red-500 px-4 py-2 text-white capitalize text-lg hover:bg-red-400 transition-all duration-100'
               onClick={signInWithEmailPassword}
             >
-              Sign in
+              Đăng nhập
             </motion.button>
           )}
 
           <div className='flex items-center justify-between gap-16'>
             <div className='w-24 h-[1px] rounded-md bg-white'></div>
-            <p className='text-white'>or</p>
+            <p className='text-white'>hoặc</p>
             <div className='w-24 h-[1px] rounded-md bg-white'></div>
           </div>
 
           <motion.button
             {...buttonClick}
-            className='w-full flex items-center justify-center px-20 py-2 bg-lightOverLay rounded-3xl'
+            className='w-full flex items-center justify-center md:px-20 py-2 bg-lightOverLay rounded-2xl'
             onClick={loginWithGoogle}
           >
             <FcGoogle className='text-3xl' />
             <p className='capitalize ml-2 text-base text-headingColor'>
-              SignIn with Google
+              Đăng nhập với Google
             </p>
           </motion.button>
         </div>

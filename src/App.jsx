@@ -1,13 +1,10 @@
+import About from '@/container/about/About'
 import { doLoginAction } from '@/redux/reducers/userReducer'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { ErrorPage, Footer, Header, Login, MainContainer } from './container'
-import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
-import { getAllFoodItems } from './utils/firebaseFunctions'
-import About from '@/container/about/About'
 import {
   DBHeader,
   DBHome,
@@ -17,6 +14,9 @@ import {
   DBOrder,
   DBUsers,
 } from './components/admin'
+import { ErrorPage, Footer, Header, Login, MainContainer } from './container'
+import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
+import { getAllFoodItems } from './utils/firebaseFunctions'
 
 const App = () => {
   function parseJwt(token) {
