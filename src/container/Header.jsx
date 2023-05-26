@@ -1,27 +1,33 @@
-import { motion } from 'framer-motion'
-import { useState } from 'react'
-import {
-  MdLogout,
-  MdOutlineDashboardCustomize,
-  MdShoppingBasket,
-} from 'react-icons/md'
-import { CgProfile } from 'react-icons/cg'
 import { buttonClick } from '@/animations'
-import Avatar from '@/assets/img/avatar.png'
 import Logo from '@/assets/img/Logo_Tam.png'
+import Avatar from '@/assets/img/avatar.png'
 import {
   doClearCartAction,
   doShowCartAction,
 } from '@/redux/reducers/cartReducer'
 import { doLogOutAction } from '@/redux/reducers/userReducer'
 import { isActiveStyle, isNotActiveStyle } from '@/utils/style'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { CgProfile } from 'react-icons/cg'
+import {
+  MdLogin,
+  MdLogout,
+  MdOutlineDashboardCustomize,
+  MdOutlineHome,
+  MdOutlinePermDeviceInformation,
+  MdShoppingBasket,
+} from 'react-icons/md'
+import { RiCustomerService2Fill } from 'react-icons/ri'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import ModalProfile from './ModalProfile'
 
 const Header = () => {
   const navigate = useNavigate()
   const cartItems = useSelector((state) => state.cartItems.cartItems)
   const [isMenu, setIsMenu] = useState(false)
+  const [showProfile, setShowProfile] = useState(false)
   const dispatch = useDispatch()
   const user = useSelector((state) => state.users.user)
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated)
@@ -36,6 +42,7 @@ const Header = () => {
     dispatch(doShowCartAction())
   }
 
+  const handleCloseProfile = () => setShowProfile(false)
   return (
     <header className='fixed z-50 w-screen py-3 px-4 md:p-6 md:px-16 bg-primary'>
       {/* desktop & tablet */}
@@ -129,7 +136,7 @@ const Header = () => {
                     </Link>
                     <p
                       className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100  transition-all duration-100 ease-in-out text-textColor text-base'
-                      onClick={() => setIsMenu(false)}
+                      onClick={() => setShowProfile(true)}
                     >
                       <CgProfile /> Hồ sơ
                     </p>
@@ -171,73 +178,145 @@ const Header = () => {
         </Link>
 
         <div className='relative'>
-          <motion.button
-            className='text-md text-gray-200 bg-red-400 px-2 py-2 rounded-lg shadow-md '
-            {...buttonClick}
-            onClick={() => navigate('/login', { replace: true })}
-          >
-            Đăng nhập
-          </motion.button>
+          {!isAuthenticated ? (
+            <>
+              <>
+                <motion.img
+                  whileTap={{ scale: 0.6 }}
+                  src={user.picture ? user.picture : Avatar}
+                  className='w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer rounded-full'
+                  alt='userprofile'
+                  referrerPolicy='no-referrer'
+                  onClick={() => setIsMenu(!isMenu)}
+                />
+                {isMenu && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.6 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.6 }}
+                    className='w-44 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0'
+                  >
+                    <ul className='flex flex-col  '>
+                      <NavLink to={'/'}>
+                        <p
+                          className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base rounded-t-lg'
+                          onClick={() => setIsMenu(false)}
+                        >
+                          <MdOutlineHome /> Trang chủ
+                        </p>
+                      </NavLink>
+                      <NavLink to={'/about'}>
+                        <p
+                          className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
+                          onClick={() => setIsMenu(false)}
+                        >
+                          <MdOutlinePermDeviceInformation />
+                          Về chúng tôi
+                        </p>
+                      </NavLink>
 
-          <motion.img />
-          {isMenu && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.6 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.6 }}
-              className='w-44 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0'
-            >
-              <ul className='flex flex-col '>
-                <NavLink
-                  to={'/'}
-                  className={({ isActive }) =>
-                    isActive ? isActiveStyle : isNotActiveStyle
-                  }
-                  onClick={() => setIsMenu(false)}
+                      <NavLink to={'/service'}>
+                        <p
+                          className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
+                          onClick={() => setIsMenu(false)}
+                        >
+                          <RiCustomerService2Fill /> Dịch vụ
+                        </p>
+                      </NavLink>
+                    </ul>
+
+                    <p
+                      className='m-2 p-2 rounded-md shadow-md flex items-center justify-center bg-red-400 gap-3 cursor-pointer hover:bg-gray-300 transition-all duration-100 ease-in-out text-textColor text-base'
+                      onClick={() => navigate('/login', { replace: true })}
+                    >
+                      Đăng Nhập <MdLogin />
+                    </p>
+                  </motion.div>
+                )}
+              </>
+            </>
+          ) : (
+            <>
+              <motion.img
+                whileTap={{ scale: 0.6 }}
+                src={user.picture ? user.picture : Avatar}
+                className='w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer rounded-full'
+                alt='userprofile'
+                referrerPolicy='no-referrer'
+                onClick={() => setIsMenu(!isMenu)}
+              />
+              {isMenu && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.6 }}
+                  className='w-44 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0'
                 >
-                  Trang chủ
-                </NavLink>
-                <NavLink
-                  to={'/about'}
-                  className={({ isActive }) =>
-                    isActive ? isActiveStyle : isNotActiveStyle
-                  }
-                  onClick={() => setIsMenu(false)}
-                >
-                  Về chúng tôi
-                </NavLink>
-                <NavLink
-                  to={'/service'}
-                  className={({ isActive }) =>
-                    isActive ? isActiveStyle : isNotActiveStyle
-                  }
-                  onClick={() => setIsMenu(false)}
-                >
-                  Dịch vụ
-                </NavLink>
-              </ul>
-              {user && user.email === 'ktd1302@gmail.com' && (
-                <>
-                  <Link to={'/dashboard'}>
+                  <ul className='flex flex-col  '>
+                    <NavLink to={'/'}>
+                      <p
+                        className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base rounded-t-lg'
+                        onClick={() => setIsMenu(false)}
+                      >
+                        <MdOutlineHome /> Trang chủ
+                      </p>
+                    </NavLink>
+                    <NavLink to={'/about'}>
+                      <p
+                        className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
+                        onClick={() => setIsMenu(false)}
+                      >
+                        <MdOutlinePermDeviceInformation />
+                        Về chúng tôi
+                      </p>
+                    </NavLink>
+
+                    <NavLink to={'/service'}>
+                      <p
+                        className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
+                        onClick={() => setIsMenu(false)}
+                      >
+                        <RiCustomerService2Fill /> Dịch vụ
+                      </p>
+                    </NavLink>
                     <p
                       className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
-                      onClick={() => setIsMenu(false)}
+                      onClick={() => {
+                        setShowProfile(true)
+                        setIsMenu(false)
+                      }}
                     >
-                      <MdOutlineDashboardCustomize /> Trang quản trị
+                      <CgProfile /> Hồ sơ
                     </p>
-                  </Link>
-                </>
+                  </ul>
+                  {user && user.email === 'ktd1302@gmail.com' && (
+                    <>
+                      <NavLink to={'/dashboard'}>
+                        <p
+                          className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out text-textColor text-base'
+                          onClick={() => setIsMenu(false)}
+                        >
+                          <MdOutlineDashboardCustomize /> Trang quản trị
+                        </p>
+                      </NavLink>
+                    </>
+                  )}
+                  <p
+                    className='m-2 p-2 rounded-md shadow-md flex items-center justify-center bg-gray-200 gap-3 cursor-pointer hover:bg-gray-300 transition-all duration-100 ease-in-out text-textColor text-base'
+                    onClick={logout}
+                  >
+                    Đăng Xuất <MdLogout />
+                  </p>
+                </motion.div>
               )}
-              <p
-                className='m-2 p-2 rounded-md shadow-md flex items-center justify-center bg-gray-200 gap-3 cursor-pointer hover:bg-gray-300 transition-all duration-100 ease-in-out text-textColor text-base'
-                onClick={logout}
-              >
-                Đăng xuất <MdLogout />
-              </p>
-            </motion.div>
+            </>
           )}
         </div>
       </div>
+      <ModalProfile
+        handleCloseProfile={handleCloseProfile}
+        showProfile={showProfile}
+      />
     </header>
   )
 }

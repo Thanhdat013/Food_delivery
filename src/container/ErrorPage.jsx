@@ -12,16 +12,15 @@ const ErrorPage = () => {
           <AiOutlineFileExcel className='text-[100px] md:text-[150px] text-gray-600 ' />
         </div>
         <p className='text-2xl text-black backdrop-blur-lg bg-transparent flex flex-col items-center gap-4'>
-          Page not found
-          <span className='text-2xl text-black backdrop-blur-lg'>
-            {` Sorry. The page you are looking for does't exist or an other error occurred!`}{' '}
-            &nbsp;
+          Trang web không tồn tại
+          <span className='text-2xl text-black text-center backdrop-blur-lg'>
+            {` Xin lỗi. Trang web bạn tìm kiếm không tồn tại hoặc đã có một lỗi xảy ra khi truy cập! `}
           </span>
           <span
             className='text-headingColor hover:text-red-500 cursor-pointer '
             onClick={() => navigate('/')}
           >
-            CLick here to back home
+            Nhấn vào đây để quay về trang chủ
           </span>
         </p>
       </div>
