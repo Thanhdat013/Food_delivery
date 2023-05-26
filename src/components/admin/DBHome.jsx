@@ -19,17 +19,17 @@ const DBHome = () => {
               type='bar'
               data={{
                 labels: [
-                  'chicken',
-                  'curry',
-                  'rice',
-                  'fish',
-                  'fruits',
-                  'icecreams',
-                  'drinks',
+                  'Gà',
+                  'Cà ri',
+                  'Cơm',
+                  'Hải sản',
+                  'Trái cây',
+                  'Tráng miệng',
+                  'Đồ uống',
                 ],
                 datasets: [
                   {
-                    label: 'Category wise Count',
+                    label: 'Số lượng theo danh mục',
                     backgroundColor: '#F9D949',
                     data: [
                       chicken.length,
@@ -52,7 +52,7 @@ const DBHome = () => {
             <CChart
               type='doughnut'
               data={{
-                labels: ['Orders', 'Delivered', 'Cancelled'],
+                labels: ['Tại bàn', 'Đã giao', 'Đã hủy'],
                 datasets: [
                   {
                     backgroundColor: ['#F9D949', '#19A7CE', '#F15A59'],

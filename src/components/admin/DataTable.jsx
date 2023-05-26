@@ -1,5 +1,5 @@
 import MaterialTable from 'material-table'
-const DataTable = ({ columns, data, title, actions }) => {
+const DataTable = ({ columns, data, title, actions, localization }) => {
   return (
     <>
       <MaterialTable
@@ -7,6 +7,7 @@ const DataTable = ({ columns, data, title, actions }) => {
         columns={columns}
         data={data}
         actions={actions}
+        localization={localization}
       />
     </>
   )

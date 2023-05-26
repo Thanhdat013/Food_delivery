@@ -33,8 +33,8 @@ const Footer = () => {
           <SiGrab className='w-full h-full cursor-pointer text-green-500 hover:text-green-600' />
         </motion.div>
       </div>
-      <div className='w-full flex justify-center items-center text-headingColor text-base'>
-        Copyright © 2023. All Rights Reserved.
+      <div className='w-full flex justify-center items-center capitalize text-headingColor text-base'>
+        Bản quyền © 2023. Đã được đăng ký bản quyền.
       </div>
     </footer>
   )

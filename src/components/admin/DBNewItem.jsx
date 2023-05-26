@@ -131,7 +131,7 @@ const DBNewItem = () => {
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder='Give me a name...'
+            placeholder='Nhập tên sản phẩm...'
             className='w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor'
           />
         </div>
@@ -161,7 +161,7 @@ const DBNewItem = () => {
                 <div className='w-full flex flex-col items-center justify-center gap-2'>
                   <div className='flex justify-between w-full'>
                     <span className='text-base font-medium text-textColor'>
-                      Progress
+                      Tiến triển
                     </span>
                     <span className='text-sm font-medium text-textColor'>
                       {Math.round(progress) > 0 && (
@@ -188,7 +188,7 @@ const DBNewItem = () => {
                     <div className='w-full h-full flex flex-col items-center justify-center gap-2'>
                       <MdCloudUpload className='text-gray-500 text-3xl hover:text-gray-700' />
                       <p className='text-gray-500 hover:text-gray-700'>
-                        Click here to upload
+                        Bấm vào đây để tải ảnh lên
                       </p>
                     </div>
                     <input
@@ -230,7 +230,7 @@ const DBNewItem = () => {
               required
               value={calories}
               onChange={(e) => setCalories(e.target.value)}
-              placeholder='Calories'
+              placeholder='Ca lo'
               className='w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor'
             />
           </div>
@@ -242,7 +242,7 @@ const DBNewItem = () => {
               required
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              placeholder='Price'
+              placeholder='Giá tiền'
               className='w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor'
             />
           </div>
@@ -254,7 +254,7 @@ const DBNewItem = () => {
             className='ml-0 md:ml-auto w-full md:w-auto border-none outline-none bg-emerald-500 px-12 py-2 rounded-lg text-lg text-white font-semibold'
             onClick={saveDetails}
           >
-            Save
+            Lưu
           </button>
         </div>
       </div>

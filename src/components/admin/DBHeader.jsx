@@ -17,9 +17,9 @@ const DBHeader = () => {
   return (
     <div className='  flex items-center justify-between gap-3  '>
       <p className=' text-2xl text-headingColor'>
-        Welcome to City
+        Chào mừng đến Tám
         {user?.email && (
-          <span className='block text-base text-gray-600'>{`Hello ${user.email}...!`}</span>
+          <span className='block text-base text-gray-600'>{`Xin chào ${user.email}...!`}</span>
         )}
       </p>
       <div className='flex  items-center justify-center gap-4'>
@@ -28,7 +28,7 @@ const DBHeader = () => {
           <input
             className='w-full h-full bg-transparent text-headingColor text-md font-medium border-none outline-none rounded-md'
             type='text'
-            placeholder='Search here..'
+            placeholder='Tìm kiếm ở đây..'
           />
           <BsToggles2 className='text-2xl text-gray-600 cursor-pointer' />
         </div>

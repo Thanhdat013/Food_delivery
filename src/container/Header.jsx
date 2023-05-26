@@ -8,7 +8,7 @@ import {
 import { CgProfile } from 'react-icons/cg'
 import { buttonClick } from '@/animations'
 import Avatar from '@/assets/img/avatar.png'
-import Logo from '@/assets/img/logo.png'
+import Logo from '@/assets/img/Logo_Tam.png'
 import {
   doClearCartAction,
   doShowCartAction,
@@ -42,7 +42,6 @@ const Header = () => {
       <div className='hidden lg:flex w-full h-full items-center justify-between'>
         <NavLink to={'/'} className='flex items-center gap-2'>
           <img src={Logo} className='w-20 object-cover' alt='logo' />
-          <p className='text-headingColor text-xl font-bold'> Tám</p>
         </NavLink>
 
         <nav className='flex items-center gap-8'>
@@ -77,21 +76,20 @@ const Header = () => {
               Dịch vụ
             </NavLink>
           </motion.ul>
-          {isAuthenticated && (
-            <div
-              className='relative flex items-center justify-center'
-              onClick={showCart}
-            >
-              <MdShoppingBasket className='text-textColor text-2xl  cursor-pointer' />
-              {cartItems && cartItems.length > 0 && (
-                <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
-                  <p className='text-xs text-white font-semibold'>
-                    {cartItems.length}
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
+
+          <div
+            className='relative flex items-center justify-center'
+            onClick={showCart}
+          >
+            <MdShoppingBasket className='text-textColor text-2xl  cursor-pointer' />
+            {cartItems && cartItems.length > 0 && (
+              <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
+                <p className='text-xs text-white font-semibold'>
+                  {cartItems.length}
+                </p>
+              </div>
+            )}
+          </div>
 
           <div className='relative'>
             {!isAuthenticated ? (
@@ -153,21 +151,19 @@ const Header = () => {
 
       {/* mobile */}
       <div className='flex items-center justify-between lg:hidden w-full h-full '>
-        {isAuthenticated && (
-          <div
-            className='relative flex items-center justify-center'
-            onClick={showCart}
-          >
-            <MdShoppingBasket className='text-textColor text-2xl  cursor-pointer' />
-            {cartItems && cartItems.length > 0 && (
-              <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
-                <p className='text-xs text-white font-semibold'>
-                  {cartItems.length}
-                </p>
-              </div>
-            )}
-          </div>
-        )}
+        <div
+          className='relative flex items-center justify-center'
+          onClick={showCart}
+        >
+          <MdShoppingBasket className='text-textColor text-2xl  cursor-pointer' />
+          {cartItems && cartItems.length > 0 && (
+            <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
+              <p className='text-xs text-white font-semibold'>
+                {cartItems.length}
+              </p>
+            </div>
+          )}
+        </div>
 
         <Link to={'/'} className='flex items-center gap-2'>
           <img src={Logo} className='w-8 object-cover' alt='logo' />

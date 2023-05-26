@@ -3,15 +3,14 @@ import DataTable from './DataTable'
 
 const DBItems = () => {
   const columns = [
-    { title: 'Name', field: 'title' },
+    { title: 'Tên sản phẩm', field: 'title' },
     {
-      title: 'Image',
+      title: 'Hình ảnh',
       field: 'imageURL',
       render: (rowData) => (
         <img
           style={{
             height: 36,
-            // borderRadius: '50%',
             display: 'flex',
             justifyContent: 'center',
           }}
@@ -20,25 +19,25 @@ const DBItems = () => {
       ),
     },
 
-    { title: 'Price', field: 'price' },
-    { title: 'Calories', field: 'calories' },
-    { title: 'Category', field: 'category' },
+    { title: 'Giá tiền', field: 'price' },
+    { title: 'Ca lo', field: 'calories' },
+    { title: 'Thể loại', field: 'category' },
   ]
   const actions = [
     {
       icon: 'edit',
-      tooltip: 'Edit Item',
-      onClick: (event, rowData) => alert('You want to edit ' + rowData.name),
+      tooltip: 'Chỉnh sửa',
+      onClick: (event, rowData) =>
+        alert('Bạn có muốn chỉnh sửa' + rowData.name),
     },
     {
       icon: 'delete',
-      tooltip: 'Delete Item',
-      onClick: (event, rowData) =>
-        confirm('You want to delete ' + rowData.name),
+      tooltip: 'Xóa',
+      onClick: (event, rowData) => confirm('Bạn có muốn xóa ' + rowData.name),
     },
   ]
   const foodItems = useSelector((state) => state.foodItems.foodItems)
-  const title = 'List of items'
+  const title = 'Danh mục sản phẩm'
   const dataTable = foodItems.map((item) => {
     return {
       title: item.title,
@@ -48,7 +47,20 @@ const DBItems = () => {
       category: item.category,
     }
   })
-
+  const localization = {
+    header: {
+      actions: 'Hoạt động',
+    },
+    pagination: {
+      labelDisplayedRows: '{to} tới {count}',
+      labelRowsPerPage: 'Số hàng trên trang',
+      labelRowsSelect: 'Hàng',
+      firstTooltip: 'Trang đầu',
+      previousTooltip: 'Trang trước',
+      nextTooltip: 'Trang tiếp',
+      lastTooltip: 'Trang cuối',
+    },
+  }
   return (
     <div className='flex items-center justify-self-center mt-6  gap-4 py-6 w-full'>
       <DataTable
@@ -56,6 +68,7 @@ const DBItems = () => {
         data={dataTable}
         actions={actions}
         title={title}
+        localization={localization}
       />
     </div>
   )

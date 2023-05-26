@@ -1,4 +1,4 @@
-import Logo from '@/assets/img/logo.png'
+import Logo from '@/assets/img/Logo_Tam.png'
 import { isActiveStyle, isNotActiveStyle } from '@/utils/style'
 import { NavLink } from 'react-router-dom'
 
@@ -6,8 +6,7 @@ const DBLeftSection = () => {
   return (
     <div className='h-full  py-6 flex flex-col item bg-lightOverLay shadow-md min-w-225 backdrop-blur-md w-275 gap-3 '>
       <NavLink to={'/'} className='flex items-center gap-4 px-6'>
-        <img src={Logo} className='w-8 object-cover' alt='logo' />
-        <p className='text-headingColor text-xl font-bold'> City</p>
+        <img src={Logo} className='w-16 object-cover' alt='logo' />
       </NavLink>
       <hr />
       <ul className=' flex items-start flex-col gap-10 px-6 mt-6'>
@@ -19,7 +18,7 @@ const DBLeftSection = () => {
               : isNotActiveStyle
           }
         >
-          Dashboard
+          Số liệu
         </NavLink>
         <NavLink
           to={'order'}
@@ -29,7 +28,7 @@ const DBLeftSection = () => {
               : isNotActiveStyle
           }
         >
-          Order
+          Đơn hàng
         </NavLink>
         <NavLink
           to={'items'}
@@ -39,7 +38,7 @@ const DBLeftSection = () => {
               : isNotActiveStyle
           }
         >
-          Items
+          Sản phẩm
         </NavLink>
         <NavLink
           to={'createItem'}
@@ -49,7 +48,7 @@ const DBLeftSection = () => {
               : isNotActiveStyle
           }
         >
-          Add New Item
+          Thêm mới sản phẩm
         </NavLink>
         <NavLink
           to={'users'}
@@ -59,7 +58,7 @@ const DBLeftSection = () => {
               : isNotActiveStyle
           }
         >
-          Users
+          Người dùng
         </NavLink>
       </ul>
       <div className='w-full items-center justify-center flex  h-225 mt-auto px-4'>
@@ -67,12 +66,13 @@ const DBLeftSection = () => {
           <div className='w-12 h-12 border rounded-full bg-white flex items-center justify-center cursor-pointer'>
             <p className='text-2xl font-bold text-red-400'>?</p>
           </div>
-          <p className='text-xl text-primary font-semibold'>Help center</p>
+          <p className='text-xl text-primary font-semibold'>Trơ giúp</p>
           <p className='text-base text-center text-primary font-semibold'>
-            Having trouble in city. Please contact us for more questions
+            Gặp khó khăn trong Tám. Vui lòng liên hệ với chúng tôi để biết thêm
+            chi tiết.
           </p>
           <p className='px-4 py-2 bg-white text-red-400 rounded-full cursor-pointer'>
-            Get in touch
+            Liên hệ
           </p>
         </div>
       </div>
