@@ -10,6 +10,7 @@ const LoginInput = ({
   showHidePassword,
   setShowHidePassword,
   iconPassword,
+  handleKeyDown,
 }) => {
   return (
     <motion.div
@@ -23,6 +24,7 @@ const LoginInput = ({
         className='w-full h-full bg-transparent text-headingColor text-md font-medium border-none outline-none rounded-md placeholder:text-gray-500 '
         value={inputState}
         onChange={(e) => inputStateFunction(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <div
         className='cursor-pointer '

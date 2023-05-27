@@ -1,5 +1,5 @@
 import LoginBgc from '@/assets/img/Login_bgc_2.png'
-import Logo from '@/assets/img/logo.png'
+import Logo from '@/assets/img/Logo_Tam.png'
 import { LoginInput } from '@/components'
 import { useState } from 'react'
 import {
@@ -34,13 +34,9 @@ const Login = () => {
   const [showHidePassword, setShowHidePassword] = useState(false)
 
   const dispatch = useDispatch()
-  // login with google
-
   const navigate = useNavigate()
   const firebaseAuth = getAuth(app)
   const provider = new GoogleAuthProvider()
-
-  // const [{ user }, dispatch] = useStateValue()
   const loginWithGoogle = async () => {
     await signInWithPopup(firebaseAuth, provider).then((userCred) => {
       navigate('/', { replace: true })
@@ -57,6 +53,15 @@ const Login = () => {
       .match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       )
+  }
+  // get user with access token from server
+  function parseJwt(token) {
+    if (!token) {
+      return
+    }
+    const base64Url = token.split('.')[1]
+    const base64 = base64Url.replace('-', '+').replace('_', '/')
+    return JSON.parse(window.atob(base64))
   }
 
   const signUpWithEmailPassword = async () => {
@@ -113,9 +118,11 @@ const Login = () => {
         userEmail,
         userPassword
       ).then((userCred) => {
+        console.log(userCred)
         toast.success('You are login successful')
         setUserEmail('')
         setUserPassword('')
+        navigate('/', { replace: true })
         const result = userCred.user
         localStorage.setItem('access_token', result.accessToken)
         const user = parseJwt(result.accessToken)
@@ -125,14 +132,15 @@ const Login = () => {
       toast.error('An email or password is incorrect, please try again')
     }
   }
-  // get user with access token from server
-  function parseJwt(token) {
-    if (!token) {
-      return
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      if (isSignUp) {
+        signUpWithEmailPassword()
+      } else {
+        signInWithEmailPassword()
+      }
     }
-    const base64Url = token.split('.')[1]
-    const base64 = base64Url.replace('-', '+').replace('_', '/')
-    return JSON.parse(window.atob(base64))
   }
 
   return (
@@ -169,6 +177,7 @@ const Login = () => {
             inputStateFunction={setUserEmail}
             type='email'
             isSignUp={isSignUp}
+            handleKeyDown={handleKeyDown}
           />
           <LoginInput
             placeholder='Nhập mật khẩu'
@@ -177,6 +186,7 @@ const Login = () => {
             inputStateFunction={setUserPassword}
             type={showHidePassword ? 'text' : 'password'}
             isSignUp={isSignUp}
+            handleKeyDown={handleKeyDown}
             showHidePassword={showHidePassword}
             setShowHidePassword={setShowHidePassword}
             iconPassword={
@@ -196,6 +206,7 @@ const Login = () => {
               inputStateFunction={setUserConfirmPassword}
               type={showHidePassword ? 'text' : 'password'}
               isSignUp={isSignUp}
+              handleKeyDown={handleKeyDown}
               showHidePassword={showHidePassword}
               setShowHidePassword={setShowHidePassword}
               iconPassword={
