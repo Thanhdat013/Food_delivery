@@ -1,6 +1,6 @@
 import CEO from '@/assets/img/CEO.png'
 import Leader from '@/assets/img/Leader.png'
-import ServiceBg from '@/assets/img/aboutBg.png'
+import ServiceBg from '@/assets/img/serviceBg.png'
 import Chef from '@/assets/img/chef.png'
 
 import { motion } from 'framer-motion'
