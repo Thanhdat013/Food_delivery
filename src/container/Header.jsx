@@ -92,19 +92,21 @@ const Header = () => {
             </NavLink>
           </motion.ul>
 
-          <div
-            className='relative flex items-center justify-center'
-            onClick={showCart}
-          >
-            <MdShoppingBasket className='text-teal-300 text-3xl  cursor-pointer' />
-            {cartItems && cartItems.length > 0 && (
-              <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
-                <p className='text-xs text-white font-semibold'>
-                  {cartItems.length}
-                </p>
-              </div>
-            )}
-          </div>
+          {isAuthenticated && (
+            <div
+              className='relative flex items-center justify-center'
+              onClick={showCart}
+            >
+              <MdShoppingBasket className='text-teal-300 text-3xl  cursor-pointer' />
+              {cartItems && cartItems.length > 0 && (
+                <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
+                  <p className='text-xs text-white font-semibold'>
+                    {cartItems.length}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
 
           <div className='relative'>
             {!isAuthenticated ? (
@@ -167,19 +169,21 @@ const Header = () => {
 
       {/* mobile */}
       <div className='flex items-center justify-between lg:hidden w-full h-full '>
-        <div
-          className='relative flex items-center justify-center'
-          onClick={showCart}
-        >
-          <MdShoppingBasket className='text-teal-500 text-4xl  cursor-pointer' />
-          {cartItems && cartItems.length > 0 && (
-            <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
-              <p className='text-xs text-white font-semibold'>
-                {cartItems.length}
-              </p>
-            </div>
-          )}
-        </div>
+        {isAuthenticated && (
+          <div
+            className='relative flex items-center justify-center'
+            onClick={showCart}
+          >
+            <MdShoppingBasket className='text-teal-500 text-4xl  cursor-pointer' />
+            {cartItems && cartItems.length > 0 && (
+              <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
+                <p className='text-xs text-white font-semibold'>
+                  {cartItems.length}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
 
         <Link to={'/'} className='flex items-center gap-2'>
           <img src={Logo} className='w-16 object-cover' alt='logo' />
