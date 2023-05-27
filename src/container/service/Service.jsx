@@ -30,7 +30,7 @@ const Service = () => {
           />
           <img
             src={AboutSub}
-            className=' hidden lg:flex ml-auto h-[147px] w-[147px] absolute left-[35%] bottom-[10% ] 2xl:bottom-0'
+            className=' hidden lg:flex ml-auto h-[147px] w-[147px] absolute left-[35%] bottom-[10%] 2xl:bottom-0'
             alt='item-1'
           />
           <img
@@ -40,7 +40,7 @@ const Service = () => {
           />
           <img
             src={AboutSub2}
-            className='ml-auto h-[147px] w-[147px] absolute  left-[-5%] bottom-[25%] 2xl:left-[10%] 2xl:bottom-[50%] hidden lg:flex'
+            className='ml-auto h-[147px] w-[147px] absolute  left-[-5%] bottom-[25%] 2xl:left-[10%] 2xl:bottom-[50%] lg:bottom-[60%] lg:left-[10%] hidden lg:flex'
             alt='item-3'
           />
         </div>
