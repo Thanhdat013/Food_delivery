@@ -67,6 +67,14 @@ const Header = () => {
               Trang chủ
             </NavLink>
             <NavLink
+              to={'/menu'}
+              className={({ isActive }) =>
+                isActive ? isActiveStyle : isNotActiveStyle
+              }
+            >
+              Thực đơn
+            </NavLink>
+            <NavLink
               to={'/about'}
               className={({ isActive }) =>
                 isActive ? isActiveStyle : isNotActiveStyle

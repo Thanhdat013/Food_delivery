@@ -31,12 +31,28 @@ const HomeSlider = ({ data }) => {
       }
     >
       <Swiper
-        // breakpoints={{
-        //   xs: { slidesPerView: 1 },
-        //   md: { slidesPerView: 3 },
-        //   lg: { slidesPerView: 5 },
-        // }}
-        slidesPerView={5}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1440: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+          1536: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+          },
+        }}
+        // slidesPerView={5}
         centeredSlides={false}
         spaceBetween={30}
         grabCursor={true}

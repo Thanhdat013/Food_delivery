@@ -3,8 +3,11 @@ import AboutSub from '@/assets/img/about-1.png'
 import AboutSub1 from '@/assets/img/about-2.png'
 import AboutSub2 from '@/assets/img/about-3.png'
 import AboutHelp from '@/assets/img/about-help.png'
+import CartContainer from '../CartContainer'
+import { useSelector } from 'react-redux'
 
 const Service = () => {
+  const cartShow = useSelector((state) => state.cartItems.cartShow)
   return (
     <section className='w-full h-auto flex flex-col mb-4'>
       <div className='grid grid-cols-1 lg:grid-cols-2  gap-2 w-full '>
@@ -91,6 +94,7 @@ const Service = () => {
           </p>
         </div>
       </div>
+      {cartShow && <CartContainer />}
     </section>
   )
 }

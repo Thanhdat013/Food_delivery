@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import CartContainer from '../CartContainer'
 import HomeContainer from './HomeContainer'
 import HomeSlider from './HomeSlider'
-import MenuContainer from './MenuContainer'
 
 const MainContainer = () => {
   const foodItems = useSelector((state) => state.foodItems.foodItems)
@@ -23,8 +22,6 @@ const MainContainer = () => {
         </div>
         <HomeSlider data={foodItems?.filter((n) => n.category === 'fruits')} />
       </section>
-
-      <MenuContainer />
 
       {cartShow && <CartContainer />}
     </div>

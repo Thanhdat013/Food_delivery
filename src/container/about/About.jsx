@@ -4,8 +4,11 @@ import ServiceBg from '@/assets/img/serviceBg.png'
 import Chef from '@/assets/img/chef.png'
 
 import { motion } from 'framer-motion'
+import CartContainer from '../CartContainer'
+import { useSelector } from 'react-redux'
 
 const About = () => {
+  const cartShow = useSelector((state) => state.cartItems.cartShow)
   return (
     <section className='w-full h-auto flex flex-col mb-4'>
       <div className='w-full absolute left-0 lg:h-420 h-[300px]'>
@@ -30,7 +33,7 @@ const About = () => {
           </p>
         </div>
       </div>
-      <div className='w-full flex flex-col gap-6 lg:mt-[420px] mt-[300px]'>
+      <div className='w-full flex flex-col gap-6 lg:mt-[440px] mt-[310px]'>
         <div className='w-full  bg-cardOverlay rounded-lg py-2 px-4  my-8 backdrop-blur-lg hover:drop-shadow-lg flex flex-col items-center justify-evenly relative'>
           <div className='w-full flex flex-col md:flex-row items-center justify-between gap-6'>
             <motion.div
@@ -63,7 +66,7 @@ const About = () => {
 
               <div className='flex justify-center items-center  md:justify-end md:items-end mt-2'>
                 <p className='text-lg text-headingColor font-medium capitalize text-center'>
-                  Trương Gia Ngọc - CEO của Tám
+                  Roger Oliver - CEO của Tám
                 </p>
               </div>
             </div>
@@ -149,6 +152,7 @@ const About = () => {
           </div>
         </div>
       </div>
+      {cartShow && <CartContainer />}
     </section>
   )
 }
