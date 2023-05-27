@@ -95,9 +95,7 @@ const HomeSlider = ({ data }) => {
                 <p className='text-textColor font-semibold text-base md:text-lg mt-5'>
                   {item?.title}
                 </p>
-                {/* <p className='mt-1 text-sm text-gray-500'>
-                  {item?.calories} Calories
-                </p> */}
+
                 <div className='flex mt-1 items-center gap-8'>
                   <p className='text-lg text-headingColor font-semibold'>
                     {String(item?.price).replace(/(.)(?=(\d{3})+$)/g, '$1,')}
