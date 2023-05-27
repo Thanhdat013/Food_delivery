@@ -53,7 +53,7 @@ const HomeContainer = () => {
           alt='hero-bg'
         />
 
-        <div className='2xl:w-[80%] w-full lg:h-full h-[85%] absolute top-0 left-0 flex items-center justify-center lg:px-4  py-4 gap-4 flex-wrap'>
+        <div className='xl:w-[80%]  w-full lg:h-full h-[85%] absolute top-0 left-0 flex items-center justify-center lg:px-4  py-4 gap-4 flex-wrap'>
           {heroData &&
             heroData.map((item, index) => (
               <motion.div

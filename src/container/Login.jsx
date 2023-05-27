@@ -38,14 +38,18 @@ const Login = () => {
   const firebaseAuth = getAuth(app)
   const provider = new GoogleAuthProvider()
   const loginWithGoogle = async () => {
-    await signInWithPopup(firebaseAuth, provider).then((userCred) => {
-      navigate('/', { replace: true })
-      toast.success('You are login successful')
-      const result = userCred.user
-      localStorage.setItem('access_token', result.accessToken)
-      const user = parseJwt(result.accessToken)
-      dispatch(doLoginAction(user))
-    })
+    await signInWithPopup(firebaseAuth, provider)
+      .then((userCred) => {
+        navigate('/', { replace: true })
+        toast.success('Bạn đã đăng nhập thành công')
+        const result = userCred.user
+        localStorage.setItem('access_token', result.accessToken)
+        const user = parseJwt(result.accessToken)
+        dispatch(doLoginAction(user))
+      })
+      .catch(() => {
+        toast.error('Đã có lỗi xảy ra, vui lòng thử lại')
+      })
   }
   const validateEmail = (email) => {
     return String(email)
@@ -67,19 +71,19 @@ const Login = () => {
   const signUpWithEmailPassword = async () => {
     const isValidEmail = validateEmail(userEmail)
     if (!isValidEmail) {
-      toast.error('Please enter a email')
+      toast.error('Vui lòng nhập email')
       return
     }
     if (!userPassword) {
-      toast.error('Please enter a password')
+      toast.error('Vui lòng nhập mật khẩu của bạn')
       return
     }
     if (!userConfirmPassword) {
-      toast.error('Please confirm your password')
+      toast.error('Vui lòng xác nhận mật khẩu của bạn')
       return
     }
     if (userPassword !== userConfirmPassword) {
-      toast.error('The password is not the same, please try again')
+      toast.error('Mật khẩu không trùng nhau, vui lòng thử lại')
       return
     } else {
       if (userPassword === userConfirmPassword) {
@@ -87,17 +91,21 @@ const Login = () => {
           firebaseAuth,
           userEmail,
           userPassword
-        ).then((userCred) => {
-          setUserEmail('')
-          setUserPassword('')
-          setUserConfirmPassword('')
-          navigate('/', { replace: true })
-          toast.success('You are login successful')
-          const result = userCred.user
-          localStorage.setItem('access_token', result.accessToken)
-          const user = parseJwt(result.accessToken)
-          dispatch(doLoginAction(user))
-        })
+        )
+          .then((userCred) => {
+            setUserEmail('')
+            setUserPassword('')
+            setUserConfirmPassword('')
+            navigate('/', { replace: true })
+            toast.success('You are login successful')
+            const result = userCred.user
+            localStorage.setItem('access_token', result.accessToken)
+            const user = parseJwt(result.accessToken)
+            dispatch(doLoginAction(user))
+          })
+          .catch(() => {
+            toast.error('Đã có lỗi xảy ra, vui lòng thử lại')
+          })
       }
     }
   }
@@ -105,31 +113,29 @@ const Login = () => {
   const signInWithEmailPassword = async () => {
     const isValidEmail = validateEmail(userEmail)
     if (!isValidEmail) {
-      toast.error('Please enter a email')
+      toast.error('Vui lòng nhập email của bạn')
       return
     }
     if (!userPassword) {
-      toast.error('Please enter a password')
+      toast.error('Vui lòng nhập mật khẩu của bạn')
       return
     }
     if (isValidEmail !== '' || userPassword !== '') {
-      await signInWithEmailAndPassword(
-        firebaseAuth,
-        userEmail,
-        userPassword
-      ).then((userCred) => {
-        console.log(userCred)
-        toast.success('You are login successful')
-        setUserEmail('')
-        setUserPassword('')
-        navigate('/', { replace: true })
-        const result = userCred.user
-        localStorage.setItem('access_token', result.accessToken)
-        const user = parseJwt(result.accessToken)
-        dispatch(doLoginAction(user))
-      })
-    } else {
-      toast.error('An email or password is incorrect, please try again')
+      await signInWithEmailAndPassword(firebaseAuth, userEmail, userPassword)
+        .then((userCred) => {
+          console.log(userCred)
+          toast.success('Bạn đã đăng nhập thành công')
+          setUserEmail('')
+          setUserPassword('')
+          navigate('/', { replace: true })
+          const result = userCred.user
+          localStorage.setItem('access_token', result.accessToken)
+          const user = parseJwt(result.accessToken)
+          dispatch(doLoginAction(user))
+        })
+        .catch(() => {
+          toast.error('Email hoặc mật khẩu không chính xác, vui lòng thử lại')
+        })
     }
   }
 
