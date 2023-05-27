@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 const DBHome = () => {
   const foodItems = useSelector((state) => state.foodItems.foodItems)
   const chicken = foodItems?.filter((c) => c.category === 'chicken')
-  const curry = foodItems?.filter((c) => c.category === 'curry')
+  const pizza = foodItems?.filter((c) => c.category === 'pizza')
   const rice = foodItems?.filter((c) => c.category === 'rice')
   const fish = foodItems?.filter((c) => c.category === 'fish')
   const fruits = foodItems?.filter((c) => c.category === 'fruits')
@@ -13,14 +13,14 @@ const DBHome = () => {
   return (
     <div className='flex items-center justify-center flex-col pt-16 w-full'>
       <div className='grid w-full grid-cols-1 md:grid-cols-2 gap-4 h-full'>
-        <div className='w-full h-full flex items-center justify-center'>
+        <div className='w-full h-full flex flex-col gap-4 items-center justify-center'>
           <div className='w-340 md:w-508'>
             <CChart
               type='bar'
               data={{
                 labels: [
                   'Gà',
-                  'Cà ri',
+                  'Pizza',
                   'Cơm',
                   'Hải sản',
                   'Trái cây',
@@ -33,7 +33,7 @@ const DBHome = () => {
                     backgroundColor: '#F9D949',
                     data: [
                       chicken.length,
-                      curry.length,
+                      pizza.length,
                       rice.length,
                       fish.length,
                       fruits.length,
@@ -46,11 +46,14 @@ const DBHome = () => {
               labels='Category'
             />
           </div>
+          <p className='py-4 text-xl text-headingColor flex items-center text-center'>
+            Danh mục sản phẩm
+          </p>
         </div>
-        <div className='w-full h-full flex items-center justify-center'>
+        <div className='w-full h-full flex flex-col items-center justify-center'>
           <div className='w-275 md:w-460'>
             <CChart
-              type='doughnut'
+              type='pie'
               data={{
                 labels: ['Tại bàn', 'Đã giao', 'Đã hủy'],
                 datasets: [
@@ -62,6 +65,9 @@ const DBHome = () => {
               }}
             />
           </div>
+          <p className='py-4 text-xl text-headingColor flex items-center text-center'>
+            Số lượng đơn hàng
+          </p>
         </div>
       </div>
     </div>

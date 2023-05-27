@@ -1,23 +1,21 @@
+import { buttonClick } from '@/animations'
+import Logo from '@/assets/img/Logo_Tam.png'
+import Avatar from '@/assets/img/avatar.png'
+import { doClearCartAction } from '@/redux/reducers/cartReducer'
+import { doLogOutAction } from '@/redux/reducers/userReducer'
 import { isActiveStyle, isNotActiveStyle } from '@/utils/style'
-import { BiUser } from 'react-icons/bi'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { BsBellFill, BsToggles2 } from 'react-icons/bs'
 import {
   MdAddCircleOutline,
   MdLogout,
   MdOutlineFastfood,
   MdOutlineLogout,
-  MdOutlineProductionQuantityLimits,
   MdSearch,
 } from 'react-icons/md'
 import { SiSimpleanalytics } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
-import Logo from '@/assets/img/Logo_Tam.png'
-import { buttonClick } from '@/animations'
-import Avatar from '@/assets/img/avatar.png'
-import { doClearCartAction } from '@/redux/reducers/cartReducer'
-import { doLogOutAction } from '@/redux/reducers/userReducer'
-import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { BsBellFill, BsToggles2 } from 'react-icons/bs'
 import { NavLink, useNavigate } from 'react-router-dom'
 const DBHeader = () => {
   const user = useSelector((state) => state.users.user)
@@ -31,11 +29,11 @@ const DBHeader = () => {
 
   const [isMenu, setIsMenu] = useState(false)
   return (
-    <div className='  flex items-center justify-between gap-3  '>
-      <NavLink to={'/'} className='flex items-center gap-4 px-6'>
+    <div className=' flex items-center justify-between gap-3  '>
+      <NavLink to={'/'} className=' lg:hidden md:flex  items-center gap-4 px-6'>
         <img src={Logo} className='w-16 object-cover' alt='logo' />
       </NavLink>
-      <p className=' hidden lg:flex text-2xl text-headingColor'>
+      <p className=' hidden lg:flex flex-col gap-3 text-2xl text-headingColor'>
         Chào mừng đến Tám
         {user?.email && (
           <span className='block text-sm lg:text-base text-gray-600'>{`Xin chào ${user.email}...!`}</span>
@@ -70,11 +68,11 @@ const DBHeader = () => {
             />
 
             {isMenu && (
-              <motion.div
+              <motion.divs
                 initial={{ opacity: 0, scale: 0.6 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.6 }}
-                className='w-48 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-28 right-6 z-50'
+                className='w-48 bg-gray-50 shadow-xl lg:hidden flex rounded-lg  flex-col absolute top-28 right-6 z-50'
               >
                 <ul className='flex flex-col  '>
                   <NavLink
@@ -88,20 +86,6 @@ const DBHeader = () => {
                       onClick={() => setIsMenu(false)}
                     >
                       <SiSimpleanalytics /> Số liệu
-                    </p>
-                  </NavLink>
-                  <NavLink
-                    to={'order'}
-                    className={({ isActive }) =>
-                      isActive ? `${isActiveStyle} ` : isNotActiveStyle
-                    }
-                  >
-                    <p
-                      className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out  text-base'
-                      onClick={() => setIsMenu(false)}
-                    >
-                      <MdOutlineProductionQuantityLimits />
-                      Đơn hàng
                     </p>
                   </NavLink>
 
@@ -131,19 +115,6 @@ const DBHeader = () => {
                       <MdAddCircleOutline /> Thêm sản phẩm
                     </p>
                   </NavLink>
-                  <NavLink
-                    to={'users'}
-                    className={({ isActive }) =>
-                      isActive ? `${isActiveStyle} ` : isNotActiveStyle
-                    }
-                  >
-                    <p
-                      className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 hover:rounded-t-lg transition-all duration-100 ease-in-out  text-base'
-                      onClick={() => setIsMenu(false)}
-                    >
-                      <BiUser /> Người dùng
-                    </p>
-                  </NavLink>
                 </ul>
 
                 <p
@@ -152,11 +123,11 @@ const DBHeader = () => {
                 >
                   Đăng Xuất <MdOutlineLogout />
                 </p>
-              </motion.div>
+              </motion.divs>
             )}
           </div>
           <motion.div
-            className='w-10 h-10 hidden lg:flex cursor-pointer bg-lightOverLay backdrop-blur-md rounded-md shadow-md flex items-center justify-center'
+            className='w-10 h-10 hidden lg:flex cursor-pointer bg-lightOverLay backdrop-blur-md rounded-md shadow-md  items-center justify-center'
             {...buttonClick}
             onClick={logout}
           >

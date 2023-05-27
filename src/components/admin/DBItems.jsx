@@ -20,7 +20,6 @@ const DBItems = () => {
     },
 
     { title: 'Giá tiền', field: 'price' },
-    { title: 'Ca lo', field: 'calories' },
     { title: 'Thể loại', field: 'category' },
   ]
   const actions = [
@@ -32,6 +31,7 @@ const DBItems = () => {
     },
     {
       icon: 'delete',
+
       tooltip: 'Xóa',
       onClick: (event, rowData) => confirm('Bạn có muốn xóa ' + rowData.name),
     },
@@ -43,7 +43,6 @@ const DBItems = () => {
       title: item.title,
       imageURL: item.imageURL,
       price: String(item.price).replace(/(.)(?=(\d{3})+$)/g, '$1,'),
-      calories: item.calories,
       category: item.category,
     }
   })

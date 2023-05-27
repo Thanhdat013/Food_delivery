@@ -20,16 +20,7 @@ const DBLeftSection = () => {
         >
           Số liệu
         </NavLink>
-        <NavLink
-          to={'order'}
-          className={({ isActive }) =>
-            isActive
-              ? `${isActiveStyle} px-2 py-2 border-l-4 border-red-500`
-              : isNotActiveStyle
-          }
-        >
-          Đơn hàng
-        </NavLink>
+
         <NavLink
           to={'items'}
           className={({ isActive }) =>
@@ -49,16 +40,6 @@ const DBLeftSection = () => {
           }
         >
           Thêm mới sản phẩm
-        </NavLink>
-        <NavLink
-          to={'users'}
-          className={({ isActive }) =>
-            isActive
-              ? `${isActiveStyle} px-2 py-2 border-l-4 border-red-500`
-              : isNotActiveStyle
-          }
-        >
-          Người dùng
         </NavLink>
       </ul>
       <div className='w-full items-center justify-center flex  h-225 mt-auto px-4'>

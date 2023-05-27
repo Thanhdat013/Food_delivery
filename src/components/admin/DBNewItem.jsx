@@ -1,5 +1,8 @@
 import { useState } from 'react'
 
+import { storage } from '@/firebase.config'
+import { doGetFoodItemsAction } from '@/redux/reducers/foodReducer'
+import { categories } from '@/utils/data'
 import {
   deleteObject,
   getDownloadURL,
@@ -11,20 +14,17 @@ import {
   MdCloudUpload,
   MdDelete,
   MdFastfood,
-  MdFoodBank,
+  MdModeEdit,
 } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { storage } from '@/firebase.config'
-import { doGetFoodItemsAction } from '@/redux/reducers/foodReducer'
-import { categories } from '@/utils/data'
 import { getAllFoodItems, saveItem } from '../../utils/firebaseFunctions'
 
 import Loader from '@/container/home/Loader'
 
 const DBNewItem = () => {
   const [title, setTitle] = useState('')
-  const [calories, setCalories] = useState('')
+  const [description, setDescription] = useState('')
   const [price, setPrice] = useState('')
   const [category, setCategory] = useState(null)
   const [imageAsset, setImageAsset] = useState(null)
@@ -75,7 +75,7 @@ const DBNewItem = () => {
   const saveDetails = () => {
     setIsLoading(true)
     try {
-      if (!title || !calories || !imageAsset || !price || !category) {
+      if (!title || !description || !imageAsset || !price || !category) {
         toast.error('Required fields can`t be empty')
         setTimeout(() => {
           setIsLoading(false)
@@ -86,7 +86,7 @@ const DBNewItem = () => {
           title: title,
           imageURL: imageAsset,
           category: category,
-          calories: calories,
+          description: description,
           qty: 1,
           price: price,
         }
@@ -110,7 +110,7 @@ const DBNewItem = () => {
   const clearData = () => {
     setTitle('')
     setImageAsset(null)
-    setCalories('')
+    setDescription('')
     setPrice('')
     setCategory('')
   }
@@ -140,10 +140,10 @@ const DBNewItem = () => {
           {categories &&
             categories.map((item) => (
               <p
-                onClick={() => setCategory(item.name)}
+                onClick={() => setCategory(item.category)}
                 key={item.id}
                 className={`px-4 py-3 rounded-md text-xl text-textColor font-semibold cursor-pointer hover:shadow-md border border-gray-200 backdrop-blur-md ${
-                  item.name === category
+                  item.category === category
                     ? 'bg-red-400 text-white'
                     : 'bg-transparent'
                 }`}
@@ -224,21 +224,22 @@ const DBNewItem = () => {
 
         <div className='w-full flex flex-col md:flex-row items-center gap-3'>
           <div className='w-full py-2 border-b border-gray-300 flex items-center gap-2'>
-            <MdFoodBank className='text-gray-700 text-2xl' />
+            <MdModeEdit className='text-gray-700 text-2xl' />
             <input
               type='text'
               required
-              value={calories}
-              onChange={(e) => setCalories(e.target.value)}
-              placeholder='Ca lo'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder='Miêu tả'
               className='w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor'
             />
           </div>
-
+        </div>
+        <div className='w-full flex flex-col md:flex-row items-center gap-3'>
           <div className='w-full py-2 border-b border-gray-300 flex items-center gap-2'>
             <MdAttachMoney className='text-gray-700 text-2xl' />
             <input
-              type='text'
+              type='number'
               required
               value={price}
               onChange={(e) => setPrice(e.target.value)}

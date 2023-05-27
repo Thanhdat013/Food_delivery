@@ -42,8 +42,8 @@ export const categories = [
   },
   {
     id: 2,
-    name: 'Cà ri',
-    category: 'curry',
+    name: 'Pizza',
+    category: 'pizza',
   },
   {
     id: 3,

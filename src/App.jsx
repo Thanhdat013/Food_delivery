@@ -11,8 +11,6 @@ import {
   DBItems,
   DBLeftSection,
   DBNewItem,
-  DBOrder,
-  DBUsers,
 } from './components/admin'
 import { ErrorPage, Footer, Header, Login, MainContainer } from './container'
 import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
@@ -99,18 +97,12 @@ const App = () => {
       element: <LayoutAdmin />,
       children: [
         { index: true, path: 'home', element: <DBHome /> },
-        {
-          path: 'order',
-          element: <DBOrder />,
-        },
+
         {
           path: 'items',
           element: <DBItems />,
         },
-        {
-          path: 'users',
-          element: <DBUsers />,
-        },
+
         {
           path: 'createItem',
           element: <DBNewItem />,

@@ -53,13 +53,13 @@ const HomeContainer = () => {
           alt='hero-bg'
         />
 
-        <div className='w-full lg:h-full h-[85%] absolute top-0 left-0 flex items-center justify-center lg:px-4  py-4 gap-4 flex-wrap'>
+        <div className='2xl:w-[80%] w-full lg:h-full h-[85%] absolute top-0 left-0 flex items-center justify-center lg:px-4  py-4 gap-4 flex-wrap'>
           {heroData &&
-            heroData.map((item, i) => (
+            heroData.map((item, index) => (
               <motion.div
-                {...staggerFadeInOut(i)}
-                key={i}
-                className=' 2xl:w-225 lg:w-190 w-150 lg:h-auto h-[160px] p-4 bg-cardOverlay backdrop-blur-md rounded-3xl flex flex-col items-center justify-center drop-shadow-lg'
+                {...staggerFadeInOut(index)}
+                key={item.id}
+                className=' 2xl:w-225  lg:w-190 w-150 lg:h-auto h-[160px] p-4 bg-cardOverlay backdrop-blur-md rounded-3xl flex flex-col items-center justify-center drop-shadow-lg'
               >
                 <img
                   src={item.imageSrc}

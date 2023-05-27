@@ -43,7 +43,7 @@ const HomeSlider = ({ data }) => {
         className='mySwiper'
         loop={true}
         autoplay={{
-          delay: 2000,
+          delay: 3000,
           disableOnInteraction: false,
           reverseDirection: true,
         }}
@@ -79,9 +79,9 @@ const HomeSlider = ({ data }) => {
                 <p className='text-textColor font-semibold text-base md:text-lg mt-5'>
                   {item?.title}
                 </p>
-                <p className='mt-1 text-sm text-gray-500'>
+                {/* <p className='mt-1 text-sm text-gray-500'>
                   {item?.calories} Calories
-                </p>
+                </p> */}
                 <div className='flex mt-1 items-center gap-8'>
                   <p className='text-lg text-headingColor font-semibold'>
                     {String(item?.price).replace(/(.)(?=(\d{3})+$)/g, '$1,')}
