@@ -15,6 +15,7 @@ import {
 import { ErrorPage, Footer, Header, Login, MainContainer } from './container'
 import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
 import { getAllFoodItems } from './utils/firebaseFunctions'
+import Service from './container/service/Service'
 
 const App = () => {
   function parseJwt(token) {
@@ -84,6 +85,10 @@ const App = () => {
         {
           path: 'about',
           element: <About />,
+        },
+        {
+          path: 'services',
+          element: <Service />,
         },
       ],
     },

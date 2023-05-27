@@ -1,94 +1,152 @@
-import AboutBg from '@/assets/img/about.png'
-import AboutSub from '@/assets/img/about-1.png'
-import AboutSub1 from '@/assets/img/about-2.png'
-import AboutSub2 from '@/assets/img/about-3.png'
-import AboutHelp from '@/assets/img/about-help.png'
+import CEO from '@/assets/img/CEO.png'
+import Leader from '@/assets/img/Leader.png'
+import ServiceBg from '@/assets/img/aboutBg.png'
+import Chef from '@/assets/img/chef.png'
+
+import { motion } from 'framer-motion'
 
 const About = () => {
   return (
     <section className='w-full h-auto flex flex-col mb-4'>
-      <div className='grid grid-cols-1 lg:grid-cols-2  gap-2 w-full '>
-        <div className='py-2  flex flex-col items-start justify-center gap-6'>
-          <p className='text-[2.5rem] lg:text-[4.5rem] capitalize font-bold tracking-wide text-headingColor'>
-            Không chỉ là món ăn, mà còn là
-            <span className='text-orange-600 text-[3rem] lg:text-[5rem]'>
-              &nbsp;Trải Nghiệm!
-            </span>
-          </p>
-          <p className='text-base text-textColor text-center md:text-left md:w-[80%]'>
-            Với phương châm luôn đặt chất lượng và sự trải nghiệm với từng món
-            ăn mà thực khách ăn lên hàng đầu. Chúng tôi luôn luôn ý thức được
-            trách nhiệm của mình và luôn nỗ lực cố gắng để để làm hài lòng mọi
-            thực khách khi sử dụng dịch vụ của chúng tôi
-          </p>
-        </div>
-        <div className='py-2 flex-1 flex items-center relative'>
-          <img
-            src={AboutBg}
-            className='mx-auto h-510 w-full lg:w-auto lg:h-685'
-            alt='about'
-          />
-          <img
-            src={AboutSub}
-            className=' hidden lg:flex ml-auto h-[147px] w-[147px] absolute left-[35%] bottom-[10% ] 2xl:bottom-0'
-            alt='item-1'
-          />
-          <img
-            src={AboutSub1}
-            className='ml-auto h-[147px] w-[147px] absolute right-0 2xl:right-[10%] bottom-[15%] hidden lg:flex'
-            alt='item-2'
-          />
-          <img
-            src={AboutSub2}
-            className='ml-auto h-[147px] w-[147px] absolute  left-[-5%] bottom-[25%] 2xl:left-[10%] 2xl:bottom-[50%] hidden lg:flex'
-            alt='item-3'
-          />
-        </div>
-      </div>
-
-      <div className='flex w-full items-center justify-between gap-16'>
-        <div className='w-[40%] h-[1px] rounded-md bg-gray-400'></div>
+      <div className='w-full absolute left-0 lg:h-420 h-[300px]'>
         <img
-          src={AboutHelp}
-          className=' h-12 w-12 rounded-full '
-          alt='about-help'
+          src={ServiceBg}
+          alt='Service-bg'
+          className='w-full h-full absolute left-0 right-0 '
         />
-        <div className='w-[40%] h-[1px] rounded-md bg-gray-400'></div>
-      </div>
-
-      <div className='flex items-center lg:flex-row justify-around gap-4 mt-6 flex-col'>
-        <div
-          className='min-h-[190px] flex items-center flex-col justify-start px-4 py-4 gap-3 lg:w-[25%]  w-[70%] h-auto rounded-lg shadow-md backdrop-blur-md
-        '
-        >
-          <p className='flex items-center justify-center text-2xl w-[20%] text-headingColor py-2 px-24 rounded-full bg-red-200 backdrop-blur-sm shadow-md cursor-pointer'>
-            Hỗ&nbsp;trợ
+        <div className='absolute flex flex-col gap-6 items-center justify-center  top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
+          <p className=' text-teal-400 text-3xl font-semibold text-center'>
+            Ẩn sâu bên trong nhà hàng Tám là giấc mơ sáng tạo ra một nơi để lan
+            tỏa nụ cười khắp thế giới
           </p>
-          <p className='text-base text-headingColor items-center hover:underline cursor-pointer'>
-            Trung tâm hỗ trợ
-          </p>
-          <p className='text-base text-headingColor items-center hover:underline cursor-pointer'>
-            Các câu hỏi thường gặp
-          </p>
-          <p className='text-base text-headingColor items-center hover:underline cursor-pointer'>
-            Phản hồi của khách hàng
+          <p className='text-white font-thin text-base text-center lg:flex hidden'>
+            Thương hiệu và biểu tượng của chúng tôi thể hiện mong ước: Luôn luôn
+            đem đến những trải nghiệm phong phú để giúp cho mỗi vị khách khi
+            bước vào thế giới của chúng tôi sẽ gặt hái được những điều thú vị và
+            tích cực. Đó là những trải nghiệm ẩm thực làm cho trái tim phải nhảy
+            múa và lây lan những năng lượng tích cực. Và chúng tôi mong sao mỗi
+            thực khách khi ra về đều có cảm nhận tích cực dù chỉ là một chút
+            thôi.
           </p>
         </div>
+      </div>
+      <div className='w-full flex flex-col gap-6 lg:mt-[420px] mt-[300px]'>
+        <div className='w-full  bg-cardOverlay rounded-lg py-2 px-4  my-8 backdrop-blur-lg hover:drop-shadow-lg flex flex-col items-center justify-evenly relative'>
+          <div className='w-full flex flex-col md:flex-row items-center justify-between gap-6'>
+            <motion.div
+              className='w-40 h-40 -mt-8 drop-shadow-2xl'
+              whileHover={{ scale: 1.2 }}
+            >
+              <img
+                src={CEO}
+                alt='CEO'
+                className='w-full h-full object-contain'
+              />
+            </motion.div>
 
-        <div
-          className='min-h-[190px] flex items-center flex-col justify-start px-4 py-4 gap-3 lg:w-[25%]  w-[70%] h-auto rounded-lg shadow-md backdrop-blur-md
-        '
-        >
-          <p className='flex items-center justify-center text-2xl w-[20%] text-headingColor py-2 px-24 rounded-full bg-gray-100 backdrop-blur-sm shadow-md cursor-pointer'>
-            Liên&nbsp;hệ
-          </p>
-          <p className='w-full text-base text-headingColor '>
-            Số điện thoại: +84 325 552 221
-          </p>
-          <p className='w-full text-base text-headingColor '>
-            Địa chỉ: Số 8 xóm Hạ Hồi, phường Trần Hưng Đạo, quận Hoàn Kiếm,
-            thành phố Hà Nội
-          </p>
+            <div className='w-full flex flex-col '>
+              <div className='flex flex-col gap-1 '>
+                <p className='text-textColor font-thin text-base md:text-lg '>
+                  {`Ý tưởng của chúng tôi "Hòa Bình" có nghĩa là sống hạnh phúc
+                  và sống tích cực trong sự an nhiên.`}
+                </p>
+                <p className='text-textColor font-thin text-base md:text-lg '>
+                  {`    Sứ mệnh của chúng tôi là chúng tôi đứng vững và làm việc hàng
+                  ngày để đạt được tầm nhìn này "Mang lại WOW, Chia sẻ hạnh
+                  phúc".`}
+                </p>
+                <p className='text-textColor font-thin text-base md:text-lg '>
+                  Bằng cách chia sẻ sự hạnh phúc đó với nhiều người, chúng tôi
+                  tin rằng hạnh phúc sẽ lan tỏa và lấp đầy thế giới.
+                </p>
+              </div>
+
+              <div className='flex justify-center items-center  md:justify-end md:items-end mt-2'>
+                <p className='text-lg text-headingColor font-medium capitalize text-center'>
+                  Trương Gia Ngọc - CEO của Tám
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className='w-full  bg-cardOverlay rounded-lg py-2 px-4  my-8 backdrop-blur-lg hover:drop-shadow-lg flex flex-col items-center justify-evenly relative'>
+          <div className='w-full flex flex-col md:flex-row items-center justify-between gap-6'>
+            <motion.div
+              className='w-40 h-40 -mt-8 drop-shadow-2xl'
+              whileHover={{ scale: 1.2 }}
+            >
+              <img
+                src={Leader}
+                alt='Leader'
+                className='w-full h-full object-contain'
+              />
+            </motion.div>
+
+            <div className='w-full flex flex-col ml-6 '>
+              <div className='flex flex-col gap-1  '>
+                <p className='text-textColor font-thin text-base md:text-lg '>
+                  Phục vụ những món ăn ngon cho thực khách thưởng thức là một
+                  nghĩa vụ của nhà hàng.
+                </p>
+                <p className='text-textColor font-thin text-base md:text-lg '>
+                  Chúng tôi luôn cố gắng không chỉ là một nhà hàng đơn thuần,
+                  chúng tôi mong muốn mỗi vị khách khi bước vào nhà hàng của
+                  chúng tôi đều cảm thấy phấn khích hơn, hạnh phúc hơn.
+                </p>
+                <p className='text-textColor font-thin text-base md:text-lg '>
+                  {`   Mọi điều chúng tôi làm, luôn luôn hướng đến "Mang lại WOW,
+                  Chia sẻ hạnh phúc".`}
+                </p>
+              </div>
+
+              <div className='flex justify-center items-center  md:justify-end md:items-end mt-2'>
+                <p className='text-lg text-headingColor font-medium capitalize text-center'>
+                  Nguyễn Thanh Nga - Cửa hàng trưởng của Tám
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className='w-full  bg-cardOverlay rounded-lg py-2 px-4  my-8 backdrop-blur-lg hover:drop-shadow-lg flex flex-col items-center justify-evenly relative'>
+          <div className='w-full flex flex-col md:flex-row items-center justify-between gap-6'>
+            <motion.div
+              className='w-40 h-40 -mt-8 drop-shadow-2xl'
+              whileHover={{ scale: 1.2 }}
+            >
+              <img
+                src={Chef}
+                alt='Chè'
+                className='w-full h-full object-contain'
+              />
+            </motion.div>
+
+            <div className='w-full flex flex-col ml-6 '>
+              <div className='flex flex-col gap-1 '>
+                <p className='text-textColor font-thin text-base md:text-lg '>
+                  {` Chúng tôi luôn luôn đảm bảo các thực phẩm luôn là thực phẩm
+                  mới nhất, tươi nhất và là thực phẩm " Sạch "`}
+                  .
+                </p>
+                <p className='text-textColor font-thin text-base md:text-lg '>
+                  Mỗi một món ăn đều là một tác phẩm tâm huyết của mỗi một người
+                  đầu bếp ở Tám
+                </p>
+                <p className='text-textColor font-thin text-base md:text-lg '>
+                  Chúng tôi luôn luôn lắng nghe mọi ý kiến của thực khách để
+                  khiến mỗi món ăn của chúng tôi làm ra thỏa mãn thực giác của
+                  mọi người
+                </p>
+              </div>
+
+              <div className='flex justify-center items-center  md:justify-end md:items-end mt-2'>
+                <p className='text-lg text-headingColor font-medium capitalize text-center'>
+                  Trần Minh Quân - Bếp trưởng của Tám
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

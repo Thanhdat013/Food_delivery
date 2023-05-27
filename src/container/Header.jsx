@@ -75,7 +75,7 @@ const Header = () => {
               Về chúng tôi
             </NavLink>
             <NavLink
-              to={'/service'}
+              to={'/services'}
               className={({ isActive }) =>
                 isActive ? isActiveStyle : isNotActiveStyle
               }
