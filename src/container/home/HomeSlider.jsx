@@ -27,7 +27,7 @@ const HomeSlider = ({ data }) => {
   return (
     <div
       className={
-        'w-full flex items-center gap-3 cursor-pointer  my-12 scroll-smooth  '
+        'w-full flex items-center gap-3 cursor-pointer  md:my-12 my-4 scroll-smooth  '
       }
     >
       <Swiper

@@ -22,7 +22,7 @@ const RowContainer = ({ flag, data }) => {
   //
   return (
     <motion.div
-      className={`w-full flex items-center gap-3 cursor-pointer  my-12 scroll-smooth  
+      className={`w-full flex items-center gap-3 cursor-pointer  md:my-12 my-4 scroll-smooth  
       ${
         flag
           ? 'overflow-x-scroll scrollbar-none'
