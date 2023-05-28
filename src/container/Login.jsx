@@ -18,7 +18,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth'
-
+import { FaSpinner } from 'react-icons/fa'
 import { app } from '@/firebase.config'
 
 import { useNavigate } from 'react-router-dom'
@@ -32,7 +32,7 @@ const Login = () => {
   const [userConfirmPassword, setUserConfirmPassword] = useState('')
   const [isSignUp, setIsSignUp] = useState(false)
   const [showHidePassword, setShowHidePassword] = useState(false)
-
+  const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const firebaseAuth = getAuth(app)
@@ -42,6 +42,7 @@ const Login = () => {
       .then((userCred) => {
         navigate('/', { replace: true })
         toast.success('Bạn đã đăng nhập thành công')
+
         const result = userCred.user
         localStorage.setItem('access_token', result.accessToken)
         const user = parseJwt(result.accessToken)
@@ -87,6 +88,7 @@ const Login = () => {
       return
     } else {
       if (userPassword === userConfirmPassword) {
+        setIsLoading(true)
         await createUserWithEmailAndPassword(
           firebaseAuth,
           userEmail,
@@ -102,9 +104,11 @@ const Login = () => {
             localStorage.setItem('access_token', result.accessToken)
             const user = parseJwt(result.accessToken)
             dispatch(doLoginAction(user))
+            setIsLoading(false)
           })
           .catch(() => {
             toast.error('Đã có lỗi xảy ra, vui lòng thử lại')
+            setIsLoading(false)
           })
       }
     }
@@ -121,6 +125,7 @@ const Login = () => {
       return
     }
     if (isValidEmail !== '' || userPassword !== '') {
+      setIsLoading(true)
       await signInWithEmailAndPassword(firebaseAuth, userEmail, userPassword)
         .then((userCred) => {
           console.log(userCred)
@@ -128,6 +133,8 @@ const Login = () => {
           setUserEmail('')
           setUserPassword('')
           navigate('/', { replace: true })
+          setIsLoading(false)
+
           const result = userCred.user
           localStorage.setItem('access_token', result.accessToken)
           const user = parseJwt(result.accessToken)
@@ -135,6 +142,7 @@ const Login = () => {
         })
         .catch(() => {
           toast.error('Email hoặc mật khẩu không chính xác, vui lòng thử lại')
+          setIsLoading(false)
         })
     }
   }
@@ -164,7 +172,6 @@ const Login = () => {
           onClick={() => navigate('/', { relative: true })}
         >
           <img src={Logo} className='w-16' alt='logo' />
-          {/* <p className='text-xl font-semibold text-headingColor'>City</p> */}
         </div>
         {/* welcome text */}
         <p className='text-3xl font-semibold text-headingColor'>
@@ -245,7 +252,6 @@ const Login = () => {
                 className='text-red-500 underline bg-transparent'
                 onClick={() => setIsSignUp(false)}
               >
-                {' '}
                 Đăng nhập
               </motion.button>
             </p>
@@ -255,18 +261,24 @@ const Login = () => {
           {isSignUp ? (
             <motion.button
               {...buttonClick}
-              className='w-full rounded-2xl  bg-red-500 px-4 py-2 text-white capitalize text-xl hover:bg-red-400 transition-all duration-100'
+              className='w-full rounded-2xl flex items-center justify-center gap-2 bg-red-500 px-4 py-2 text-white capitalize text-lg hover:bg-red-400 transition-all duration-100'
               onClick={signUpWithEmailPassword}
             >
-              Đăng ký
+              {isLoading && (
+                <FaSpinner className='text-lg transition-all fill-slate-200 animate-spin' />
+              )}
+              <p> Đăng ký</p>
             </motion.button>
           ) : (
             <motion.button
               {...buttonClick}
-              className='w-full rounded-2xl  bg-red-500 px-4 py-2 text-white capitalize text-lg hover:bg-red-400 transition-all duration-100'
+              className='w-full rounded-2xl flex items-center justify-center gap-2 bg-red-500 px-4 py-2 text-white capitalize text-lg hover:bg-red-400 transition-all duration-100'
               onClick={signInWithEmailPassword}
             >
-              Đăng nhập
+              {isLoading && (
+                <FaSpinner className='text-lg transition-all fill-slate-200 animate-spin' />
+              )}
+              <p> Đăng nhập</p>
             </motion.button>
           )}
 
