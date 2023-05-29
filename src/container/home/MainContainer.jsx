@@ -20,7 +20,9 @@ const MainContainer = () => {
             Các món ăn bán chạy nhất
           </p>
         </div>
-        <HomeSlider data={foodItems?.filter((n) => n.category.length <= 5)} />
+        <HomeSlider
+          data={foodItems?.filter((n) => n.price >= 50000 && n.price <= 200000)}
+        />
       </section>
 
       {cartShow && <CartContainer />}

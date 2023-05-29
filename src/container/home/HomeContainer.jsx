@@ -36,9 +36,10 @@ const HomeContainer = () => {
 
         <p className='text-base text-textColor text-center md:text-left md:w-[80%]'>
           <span className='text-teal-500'>Tám </span> là nhà hàng đầu tư chỉn
-          chu về chất lượng và dịch vụ. Nó được trang trí bằng những đồ vật quen
-          thuộc với cuộc sống đời thường của người việt như ngói, tre,sen,… Mỗi
-          góc phòng đều trang trí tỉ mỉ và mang lại không gian như nhà.
+          chu về chất lượng và dịch vụ. Nhà hàng được trang trí bằng những đồ
+          vật quen thuộc với cuộc sống đời thường của người việt như ngói,
+          tre,sen,… Mỗi góc phòng đều trang trí tỉ mỉ và mang lại không gian như
+          nhà.
         </p>
 
         <motion.button

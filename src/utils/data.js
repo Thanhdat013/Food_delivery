@@ -5,28 +5,28 @@ import Fi1 from '@/assets/img/fi1.png'
 
 export const heroData = [
   {
-    id: 1,
+    id: 'I1',
     name: 'Kem Chocolate',
     decp: 'Chocolate và vanilla',
     price: '52000',
     imageSrc: I1,
   },
   {
-    id: 2,
+    id: 'I2',
     name: 'Dâu tây',
     decp: 'Dâu tây sạch',
     price: '25000',
     imageSrc: F1,
   },
   {
-    id: 3,
+    id: 'I3',
     name: 'Mẹt gà',
     decp: 'Mẹt gà 5 món',
     price: '290000',
     imageSrc: C3,
   },
   {
-    id: 4,
+    id: 'I4',
     name: 'Set hải sản',
     decp: 'Set hải sản tổng hợp',
     price: '350000',

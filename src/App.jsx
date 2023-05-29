@@ -17,6 +17,7 @@ import { doGetFoodItemsAction } from './redux/reducers/foodReducer'
 import { getAllFoodItems } from './utils/firebaseFunctions'
 import Service from './container/service/Service'
 import Menu from './container/menu/Menu'
+import Protected from './components/Protected'
 
 const App = () => {
   function parseJwt(token) {
@@ -104,7 +105,11 @@ const App = () => {
     },
     {
       path: '/dashboard',
-      element: <LayoutAdmin />,
+      element: (
+        <Protected>
+          <LayoutAdmin />
+        </Protected>
+      ),
       children: [
         { index: true, path: 'home', element: <DBHome /> },
 
