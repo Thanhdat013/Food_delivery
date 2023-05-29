@@ -19,7 +19,7 @@ const CartContainer = () => {
 
   const [flag, setFlag] = useState(1)
   const [tot, setTot] = useState(0)
-  const [priceDelivery, setPriceDelivery] = useState(0)
+  const [priceDelivery, setPriceDelivery] = useState(15000)
   const showCart = () => {
     dispatch(doShowCartAction())
   }
@@ -28,9 +28,9 @@ const CartContainer = () => {
     let totalPrice = cartItems.reduce(function (accumulator, item) {
       return accumulator + item.qty * item.price
     }, 0)
-    if (totalPrice < 150000) setPriceDelivery(15000)
+    if (totalPrice > 150000) setPriceDelivery(0)
     setTot(totalPrice)
-  }, [tot, flag, cartItems])
+  }, [tot, flag, cartItems, priceDelivery])
   const clickPayMent = () => {
     dispatch(doClearCartAction())
   }
@@ -40,10 +40,10 @@ const CartContainer = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 200 }}
+      initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 200 }}
-      className='fixed top-0 right-0 w-full md:w-375 h-screen bg-white drop-shadow-md flex flex-col z-[101]'
+      exit={{ opacity: 0, x: 50 }}
+      className='fixed top-0 right-0 w-full md:w-375 h-screen bg-white drop-shadow-md flex flex-col z-[101] '
     >
       <div className='w-full flex items-center justify-between p-4 cursor-pointer'>
         <motion.div whileTap={{ scale: 0.75 }} onClick={showCart}>
