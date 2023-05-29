@@ -38,7 +38,7 @@ const App = () => {
     })
   }
 
-  const fecthUser = async () => {
+  const fetchUser = async () => {
     const accessToken = localStorage?.getItem('access_token')
     if (accessToken) {
       const user = parseJwt(accessToken)
@@ -46,7 +46,7 @@ const App = () => {
     }
   }
   useEffect(() => {
-    fecthUser()
+    fetchUser()
     fetchData()
   }, [])
 
@@ -69,7 +69,7 @@ const App = () => {
           <DBLeftSection />
         </div>
 
-        <div className='flex flex-col w-full py-12 px-12 flex-1 max-h-screen h-full overflow-scroll scroll-smooth'>
+        <div className='flex flex-col w-full py-12 px-2 md:px-12 flex-1 max-h-screen h-full overflow-scroll scroll-smooth'>
           <DBHeader />
 
           <Outlet />
@@ -89,7 +89,7 @@ const App = () => {
           element: <About />,
         },
         {
-          path: 'services',
+          path: 'service',
           element: <Service />,
         },
         {

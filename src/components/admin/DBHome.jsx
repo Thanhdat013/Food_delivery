@@ -12,7 +12,7 @@ const DBHome = () => {
   const drinks = foodItems?.filter((c) => c.category === 'drinks')
   return (
     <div className='flex items-center justify-center flex-col pt-16 w-full'>
-      <div className='grid w-full grid-cols-1 md:grid-cols-2 gap-4 h-full'>
+      <div className='grid w-full grid-cols-1 lg:grid-cols-2 gap-4 h-full'>
         <div className='w-full h-full flex flex-col gap-4 items-center justify-center'>
           <div className='w-340 md:w-508'>
             <CChart

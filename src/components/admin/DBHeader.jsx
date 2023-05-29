@@ -29,9 +29,12 @@ const DBHeader = () => {
 
   const [isMenu, setIsMenu] = useState(false)
   return (
-    <div className=' flex items-center justify-between gap-3  '>
-      <NavLink to={'/'} className=' lg:hidden md:flex  items-center gap-4 px-6'>
-        <img src={Logo} className='w-16 object-cover' alt='logo' />
+    <div className=' flex items-center md:justify-between justify-center gap-3  '>
+      <NavLink
+        to={'/'}
+        className=' lg:hidden md:flex items-center gap-4 md:px-6 px-0'
+      >
+        <img src={Logo} className='w-16 object-cover ' alt='logo' />
       </NavLink>
       <p className=' hidden lg:flex flex-col gap-3 text-2xl text-headingColor'>
         Chào mừng đến Tám
@@ -39,8 +42,9 @@ const DBHeader = () => {
           <span className='block text-sm lg:text-base text-gray-600'>{`Xin chào ${user.email}...!`}</span>
         )}
       </p>
+
       <div className='flex  items-center justify-center gap-4'>
-        <div className='flex  items-center justify-center gap-2 min-w-[300px] px-4 py-2 bg-lightOverLay backdrop-blur-md rounded-md shadow-md bg-white'>
+        <div className='flex  items-center justify-center gap-2 md:w-[300px] w-[200px]   px-4 py-2 bg-lightOverLay backdrop-blur-md rounded-md shadow-md bg-white'>
           <MdSearch className='text-2xl text-gray-600 cursor-pointer' />
           <input
             className='w-full h-full bg-transparent text-headingColor text-md font-medium border-none outline-none rounded-md'
@@ -57,7 +61,7 @@ const DBHeader = () => {
           <BsBellFill className='text-xl text-gray-600' />
         </motion.div>
         <div className=' flex items-center justify-center gap-2'>
-          <div className='w-10 h-10 hidden md:flex rounded-md  shadow-md cursor-pointer overflow-hidden'>
+          <div className='w-10 h-10  rounded-md  shadow-md cursor-pointer overflow-hidden'>
             <motion.img
               {...buttonClick}
               src={user.picture ? user.picture : Avatar}
@@ -126,6 +130,7 @@ const DBHeader = () => {
               </motion.divs>
             )}
           </div>
+
           <motion.div
             className='w-10 h-10 hidden lg:flex cursor-pointer bg-lightOverLay backdrop-blur-md rounded-md shadow-md  items-center justify-center'
             {...buttonClick}

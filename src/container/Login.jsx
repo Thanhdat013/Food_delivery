@@ -174,7 +174,7 @@ const Login = () => {
           <img src={Logo} className='w-16' alt='logo' />
         </div>
         {/* welcome text */}
-        <p className='text-3xl font-semibold text-headingColor'>
+        <p className='text-3xl font-semibold text-headingColor text-center'>
           Chào mừng bạn quay lại
         </p>
         <p className='text-xl text-center -mt-6 '>

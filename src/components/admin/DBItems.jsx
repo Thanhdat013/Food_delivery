@@ -51,8 +51,8 @@ const DBItems = () => {
       actions: 'Hoạt động',
     },
     pagination: {
-      labelDisplayedRows: '{to} tới {count}',
-      labelRowsPerPage: 'Số hàng trên trang',
+      labelDisplayedRows: '',
+      labelRowsPerPage: '',
       labelRowsSelect: 'Hàng',
       firstTooltip: 'Trang đầu',
       previousTooltip: 'Trang trước',

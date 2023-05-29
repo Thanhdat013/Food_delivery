@@ -18,7 +18,7 @@ import {
 } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { getAllFoodItems, saveItem } from '../../utils/firebaseFunctions'
+import { getAllFoodItems, saveItem } from '@/utils/firebaseFunctions'
 
 import Loader from '@/container/home/Loader'
 
